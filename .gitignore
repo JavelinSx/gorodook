@@ -1,6 +1,7 @@
 run-copy.bat
 copy-files.ps1
 exported_files
+public
 # Nuxt dev/build outputs
 .output
 .data
