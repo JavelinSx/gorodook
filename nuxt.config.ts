@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     prefix: 'Nuxt',
     global: true,
     icons: ['heroicons', 'mdi'],
-    // Set primary color to a soft blue
     colors: {
       primary: {
         50: '#f0f5ff',
@@ -50,12 +49,30 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@pinia/nuxt',
     'nuxt-swiper',
+    '@nuxtjs/sitemap',
   ],
-  swiper: {
-    // Optional module configuration
-    enableComposables: true, // Enable the useSwiper composable
-    bundled: true, // Bundle Swiper CSS and modules (recommended)
+
+  // Site configuration for SEO
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
+    name: 'Городок - Аренда квартир в Мирном',
+    description:
+      'Аренда квартир посуточно в городе Мирный. Комфортабельные квартиры с полным обустройством. Документы о проживании.',
+    defaultLocale: 'ru',
   },
+
+  // Sitemap configuration
+  sitemap: {
+    hostname: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
+    gzip: true,
+    routes: ['/', '/apartments', '/about', '/contacts'],
+  },
+
+  swiper: {
+    enableComposables: true,
+    bundled: true,
+  },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
@@ -66,23 +83,26 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' },
+        // Для российского рынка
+        { name: 'yandex-verification', content: 'ваш-код-верификации' },
+        { name: 'google-site-verification', content: 'ваш-код-верификации' },
       ],
-      // Загружаем стили Swiper глобально
-      link: [{ rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css' }],
-      // Загружаем скрипты Swiper глобально (опция для дополнительной надежности)
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css' },
+      ],
       script: [{ src: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', defer: true }],
     },
   },
-  // Auto-import components
+
   components: ['~/components'],
-  // TypeScript settings
+
   typescript: {
     shim: false,
     strict: true,
   },
-  // Vite configuration
+
   vite: {
-    // Настройки для CSS
     css: {
       preprocessorOptions: {
         scss: {
@@ -90,5 +110,11 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+
+  // Image optimization
+  image: {
+    quality: 80,
+    format: ['webp'],
   },
 });

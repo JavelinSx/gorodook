@@ -26,7 +26,7 @@
         </section>
 
         <!-- Filters Section -->
-        <section class="bg-white border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+        <section class="bg-white border-b border-gray-200 md:sticky top-[60px] z-40 shadow-sm">
             <div class="container-custom py-4">
                 <div class="flex flex-wrap items-center gap-4">
                     <!-- Room Filter -->
