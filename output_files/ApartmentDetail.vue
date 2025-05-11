@@ -74,7 +74,7 @@
 
                     <!-- Кнопки действий -->
                     <div class="mt-8 space-y-3">
-                        <NuxtLink :to="`/contacts?apartmentId=${apartmentId}`"
+                        <NuxtLink to="/contacts"
                             class="btn w-full bg-cyan-600 text-white hover:bg-cyan-700 py-3 flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
                             <Icon name="i-heroicons-phone" class="h-5 w-5 mr-2" />
                             Забронировать

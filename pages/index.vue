@@ -2,11 +2,11 @@
     <div class="home-page">
         <!-- Hero Section -->
         <section class="relative bg-cyan-800 text-white overflow-hidden">
-            <div class="absolute inset-0 opacity-40 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
-            <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
-            <div class="container-custom relative z-10 py-20 md:py-28">
+            <div class="absolute w-72 h-48 bottom-16 left-28 bg-[url('/img/bg-home.png')] bg-cover bg-left 
+            md:left-auto md:right-0 md:inset-y-0 md:w-1/2 md:h-[400px] lg:h-[500px] md:bg-right" />
+            <div class="container-custom relative z-10 py-10 pb-16 md:py-20">
                 <div class="max-w-2xl">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white fade-in">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
                         Уютные квартиры <span class="text-accent-300">в городе Мирный</span>
                     </h1>
                     <p class="text-lg md:text-xl mb-8 text-gray-100 fade-in" style="animation-delay: 0.2s;">
@@ -15,11 +15,11 @@
                     </p>
                     <div class="flex flex-wrap gap-4 fade-in" style="animation-delay: 0.4s;">
                         <NuxtLink to="/apartments"
-                            class="btn bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 text-lg transition-all duration-300 hover:shadow-lg transform hover:translate-y-[-2px]">
+                            class="btn w-60 bg-cyan-500/50 text-white hover:bg-cyan-600 py-3 px-8 text-lg transition-all duration-300 hover:shadow-lg transform hover:translate-y-[-2px]">
                             Смотреть квартиры
                         </NuxtLink>
                         <NuxtLink to="/contacts"
-                            class="btn py-3 px-8 text-lg bg-transparent border-2 border-white hover:bg-white hover:text-cyan-900 transition-all duration-300">
+                            class="btn w-60 py-3 px-8 text-lg bg-transparent border-2 border-white hover:bg-white hover:text-cyan-900 transition-all duration-300">
                             Связаться с нами
                         </NuxtLink>
                     </div>
@@ -27,9 +27,10 @@
             </div>
 
             <!-- Wave Separator -->
-            <div class="absolute bottom-0 left-0 right-0">
+            <div
+                class="absolute bottom-0 left-0 right-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    class="fill-gray-50 w-full h-[50px]">
+                    class="fill-gray-50 w-full h-[50px] mb-[-1px]">
                     <path
                         d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
                 </svg>
@@ -37,7 +38,7 @@
         </section>
 
         <!-- Advantages Section -->
-        <section class="py-16 bg-gray-50 relative">
+        <section class="py-10 bg-gray-50 relative">
             <div class="container-custom">
                 <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-cyan-800 fade-down">Почему выбирают
                     нас</h2>
@@ -46,8 +47,8 @@
                     <!-- Advantage 1 -->
                     <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.1s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
-                            <Icon name="i-heroicons-home-modern" class="h-8 w-8 text-cyan-600" />
+                            class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
+                            <Icon name="i-heroicons-home-modern" size="24" class="text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-800">Удобное расположение</h3>
                         <p class="text-gray-600">
@@ -59,8 +60,8 @@
                     <!-- Advantage 2 -->
                     <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.2s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
-                            <Icon name="i-heroicons-star" class="h-8 w-8 text-cyan-600" />
+                            class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
+                            <Icon name="i-heroicons-star" size="24" class="text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-800">Комфорт и удобство</h3>
                         <p class="text-gray-600">
@@ -72,8 +73,8 @@
                     <!-- Advantage 3 -->
                     <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.3s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
-                            <Icon name="i-heroicons-document-text" class="h-8 w-8 text-cyan-600" />
+                            class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
+                            <Icon name="i-heroicons-document-text" size="24" class="text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-800">Официальные документы</h3>
                         <p class="text-gray-600">
@@ -90,12 +91,12 @@
         </section>
 
         <!-- Featured Apartments -->
-        <section class="py-16 relative">
+        <section class="py-10 relative">
             <div class="container-custom">
                 <div class="flex flex-col md:flex-row justify-between items-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-cyan-800 fade-in">Наши квартиры</h2>
                     <NuxtLink to="/apartments"
-                        class="mt-4 md:mt-0 btn btn-cyan transition-all duration-300 hover:shadow-md transform hover:translate-y-[-2px] fade-in">
+                        class="mt-4 border-cyan-600 border w-full md:w-auto text-cyan-800 md:mt-0 btn btn-cyan transition-all duration-300 hover:shadow-md transform hover:translate-y-[-2px] fade-in">
                         Смотреть все
                     </NuxtLink>
                 </div>
@@ -121,7 +122,7 @@
         </section>
 
         <!-- Testimonials -->
-        <section class="py-16 bg-gray-50 relative overflow-hidden">
+        <section class="py-10 bg-gray-50 relative overflow-hidden">
             <div class="container-custom">
                 <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-cyan-800 fade-down">Отзывы наших
                     клиентов</h2>
@@ -148,26 +149,23 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Wave Background at top -->
-            <div class="absolute top-0 left-0 right-0 transform rotate-180">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    class="fill-white w-full h-[50px]">
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
-                </svg>
-            </div>
         </section>
 
         <!-- CTA Section -->
         <section class="py-16 relative">
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-700 to-cyan-800" />
-            <div class="absolute inset-x-0 top-0">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    class="fill-gray-50 w-full h-[50px]">
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
-                </svg>
+            <div class="absolute top-0 left-0 right-0 transform rotate-180 overflow-hidden">
+                <div class="relative h-[53px] -mt-px">
+                    <!-- Градиентный слой -->
+                    <div class="absolute inset-0 bg-gradient-to-l from-cyan-700 to-cyan-800"></div>
+
+                    <!-- SVG форма -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
+                        class="relative w-full h-full">
+                        <path fill="#f9fafb"
+                            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
+                    </svg>
+                </div>
             </div>
 
             <div class="container-custom text-center relative z-10">

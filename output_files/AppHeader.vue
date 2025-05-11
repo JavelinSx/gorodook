@@ -4,14 +4,14 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <NuxtLink to="/"
-                    class="flex items-center space-x-2 text-xl text-cyan-600 transition-all duration-300 hover:scale-105">
+                    class="flex items-center space-x-2 text-2xl font-bold text-cyan-600 transition-all duration-300 hover:scale-105">
                     <Icon name="i-heroicons-home" class="h-8 w-8 text-cyan-600" />
                     <span>Городок</span>
                 </NuxtLink>
             </div>
 
             <!-- Navigation -->
-            <nav class="hidden md:flex space-x-8  text-cyan-600 hover:text-cyan-700">
+            <nav class="hidden md:flex space-x-8">
                 <NuxtLink to="/" class="nav-link-class">
                     Главная
                 </NuxtLink>
@@ -46,7 +46,7 @@
 
         <!-- Mobile Menu -->
         <Transition name="slide-down">
-            <div v-if="isMenuOpen" class="md:hidden bg-white absolute w-full shadow-lg">
+            <div v-if="isMenuOpen" class="md:hidden bg-white shadow-lg">
                 <div class="container-custom py-4">
                     <nav class="flex flex-col space-y-4">
                         <NuxtLink to="/" class="nav-link-mobile-class" @click="closeMenu">
