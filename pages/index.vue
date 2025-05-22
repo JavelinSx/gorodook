@@ -2,8 +2,8 @@
     <div class="home-page">
         <!-- Hero Section -->
         <section class="relative bg-cyan-800 text-white overflow-hidden">
-            <div class="absolute w-72 h-48 bottom-16 left-28 bg-[url('/img/bg-home.png')] bg-cover bg-left 
-            md:left-auto md:right-0 md:inset-y-0 md:w-1/2 md:h-[400px] lg:h-[500px] md:bg-right" />
+            <img src="/img/bg-home.png"
+                class="absolute inset-y-1/3 right-[-50px] md:inset-y-1/12 md:w-3/4 md:right-0 lg:top-3 lg:w-1/2 lg:inset-y-[-100px] 2xl:top-[-100px]">
             <div class="container-custom relative z-10 py-10 pb-16 md:py-20">
                 <div class="max-w-2xl">
                     <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white fade-in">
@@ -45,7 +45,8 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Advantage 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.1s;">
+                    <div class="relative bg-white p-6 rounded-lg shadow-sm text-center fade-up"
+                        style="animation-delay: 0.1s;">
                         <div
                             class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-home-modern" size="24" class="text-cyan-600" />
@@ -55,10 +56,13 @@
                             Все наши квартиры расположены в центральной части города, в шаговой доступности от
                             магазинов, кафе и общественного транспорта.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 0s;" />
                     </div>
 
                     <!-- Advantage 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.2s;">
+                    <div class="relative bg-white p-6 rounded-lg shadow-sm text-center fade-up"
+                        style="animation-delay: 0.2s;">
                         <div
                             class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-star" size="24" class="text-cyan-600" />
@@ -68,10 +72,13 @@
                             Квартиры полностью укомплектованы всем необходимым для комфортного проживания: мебель,
                             бытовая техника, посуда, постельные принадлежности.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 0.6s;" />
                     </div>
 
                     <!-- Advantage 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm text-center fade-up" style="animation-delay: 0.3s;">
+                    <div class="relative bg-white p-6 rounded-lg shadow-sm text-center fade-up"
+                        style="animation-delay: 0.3s;">
                         <div
                             class="inline-block p-4 pt-3 pb-3 rounded-full bg-cyan-100 mb-4 transform transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-document-text" size="24" class="text-cyan-600" />
@@ -81,6 +88,8 @@
                             Предоставляем все необходимые документы о проживании для отчетности, что особенно важно для
                             командировочных.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 1.2s;" />
                     </div>
                 </div>
             </div>
@@ -133,7 +142,7 @@
                         :style="{ 'animation-delay': `${0.1 + index * 0.1}s` }">
                         <div class="flex items-center mb-4">
                             <div
-                                class="bg-cyan-100 text-cyan-600 rounded-full p-3 flex-shrink-0 transform transition-transform duration-300 hover:scale-110">
+                                class="bg-cyan-100 text-cyan-600 rounded-full p-3 pt-2 pb-2 flex-shrink-0 transform transition-transform duration-300 hover:scale-110">
                                 <Icon name="i-heroicons-user-circle" class="h-8 w-8" />
                             </div>
                             <div class="ml-4">
@@ -154,10 +163,10 @@
         <!-- CTA Section -->
         <section class="py-16 relative">
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-700 to-cyan-800" />
-            <div class="absolute top-0 left-0 right-0 transform rotate-180 overflow-hidden">
+            <div class="mt-[-4px] absolute top-0 left-0 right-0 transform rotate-180 overflow-hidden">
                 <div class="relative h-[53px] -mt-px">
                     <!-- Градиентный слой -->
-                    <div class="absolute inset-0 bg-gradient-to-l from-cyan-700 to-cyan-800"></div>
+                    <div class="absolute inset-0 bg-gradient-to-l from-cyan-700 to-cyan-800" />
 
                     <!-- SVG форма -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
@@ -193,13 +202,114 @@
 <script setup lang="ts">
 import { storeToRefs } from '#imports'
 import { useApartmentStore } from '~/store/apartmentStore'
-
+const config = useRuntimeConfig()
 // Set metadata for this page
 useHead({
-    title: 'Городок | Аренда квартир в Мирном',
+    title: 'Аренда квартир посуточно в Мирном | Городок',
     meta: [
-        { name: 'description', content: 'Аренда комфортабельных квартир в городе Мирный. Чистые уютные квартиры со всем необходимым для проживания.' }
+        { name: 'description', content: 'Аренда квартир посуточно в городе Мирный, Архангельская область. 15+ комфортабельных квартир в центре города. Документы о проживании. Рейтинг 4.9' },
+        { name: 'keywords', content: 'аренда квартир мирный, квартиры посуточно мирный, гостиница мирный, снять квартиру мирный, архангельская область' },
+
+        // Open Graph
+        { property: 'og:title', content: 'Аренда квартир посуточно в Мирном | Городок' },
+        { property: 'og:description', content: 'Аренда квартир посуточно в городе Мирный, Архангельская область. 15+ комфортабельных квартир в центре города.' },
+        { property: 'og:image', content: `${config.public.siteUrl}/og-home.jpg` },
+        { property: 'og:url', content: config.public.siteUrl },
+        { property: 'og:type', content: 'website' },
+
+        // Twitter Cards
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Аренда квартир посуточно в Мирном | Городок' },
+        { name: 'twitter:description', content: 'Аренда квартир посуточно в городе Мирный, Архангельская область. 15+ комфортабельных квартир в центре города.' },
+        { name: 'twitter:image', content: `${config.public.siteUrl}/og-home.jpg` },
     ],
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@graph': [
+                    {
+                        '@type': 'Organization',
+                        '@id': `${config.public.siteUrl}/#organization`,
+                        name: 'Городок',
+                        url: config.public.siteUrl,
+                        logo: `${config.public.siteUrl}/logo.png`,
+                        telephone: '+79214794791',
+                        email: '9214794791@mail.ru',
+                        address: {
+                            '@type': 'PostalAddress',
+                            streetAddress: 'ул. Ленина, д.65, офис 20',
+                            addressLocality: 'Мирный',
+                            addressRegion: 'Архангельская область',
+                            postalCode: '164170',
+                            addressCountry: 'RU'
+                        },
+                        geo: {
+                            '@type': 'GeoCoordinates',
+                            latitude: 62.7676,
+                            longitude: 40.3348
+                        },
+                        sameAs: [
+                            'https://t.me/ArendaGorodOK',
+                            'https://vk.com/id226682363'
+                        ]
+                    },
+                    {
+                        '@type': 'LocalBusiness',
+                        '@id': `${config.public.siteUrl}/#business`,
+                        name: 'Городок - Аренда квартир в Мирном',
+                        description: 'Аренда квартир посуточно в городе Мирный',
+                        url: config.public.siteUrl,
+                        telephone: '+79214794791',
+                        email: '9214794791@mail.ru',
+                        priceRange: '₽₽',
+                        address: {
+                            '@type': 'PostalAddress',
+                            streetAddress: 'ул. Ленина, д.65, офис 20',
+                            addressLocality: 'Мирный',
+                            addressRegion: 'Архангельская область',
+                            postalCode: '164170',
+                            addressCountry: 'RU'
+                        },
+                        geo: {
+                            '@type': 'GeoCoordinates',
+                            latitude: 62.7676,
+                            longitude: 40.3348
+                        },
+                        openingHoursSpecification: {
+                            '@type': 'OpeningHoursSpecification',
+                            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                            opens: '08:00',
+                            closes: '22:00'
+                        },
+                        aggregateRating: {
+                            '@type': 'AggregateRating',
+                            ratingValue: '4.9',
+                            reviewCount: '87',
+                            bestRating: '5'
+                        }
+                    },
+                    {
+                        '@type': 'WebSite',
+                        '@id': `${config.public.siteUrl}/#website`,
+                        url: config.public.siteUrl,
+                        name: 'Городок - Аренда квартир в Мирном',
+                        description: 'Аренда квартир посуточно в городе Мирный, Архангельская область',
+                        inLanguage: 'ru-RU',
+                        potentialAction: {
+                            '@type': 'SearchAction',
+                            target: {
+                                '@type': 'EntryPoint',
+                                urlTemplate: `${config.public.siteUrl}/apartments?search={search_term_string}`
+                            },
+                            'query-input': 'required name=search_term_string'
+                        }
+                    }
+                ]
+            })
+        }
+    ]
 })
 
 // Get store data

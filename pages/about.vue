@@ -1,7 +1,7 @@
 <template>
     <div class="about-page">
         <!-- Page Header -->
-        <section class="bg-cyan-800 text-white py-12 relative overflow-hidden">
+        <section class="bg-cyan-800 text-white pt-6 pb-16 relative overflow-hidden">
             <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
 
@@ -48,22 +48,22 @@
 
                         <!-- Stats -->
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-up"
+                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform fade-up"
                                 style="animation-delay: 0.4s;">
                                 <div class="text-3xl font-bold text-cyan-600 mb-1">8+</div>
                                 <div class="text-sm text-gray-600">лет на рынке</div>
                             </div>
-                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-up"
+                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform fade-up"
                                 style="animation-delay: 0.5s;">
                                 <div class="text-3xl font-bold text-cyan-600 mb-1">15+</div>
                                 <div class="text-sm text-gray-600">квартир в управлении</div>
                             </div>
-                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-up"
+                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform fade-up"
                                 style="animation-delay: 0.6s;">
                                 <div class="text-3xl font-bold text-cyan-600 mb-1">1000+</div>
                                 <div class="text-sm text-gray-600">довольных клиентов</div>
                             </div>
-                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-up"
+                            <div class="text-center p-4 bg-white shadow-sm rounded-lg hover:shadow-md transition-all duration-300 transform fade-up"
                                 style="animation-delay: 0.7s;">
                                 <div class="text-3xl font-bold text-cyan-600 mb-1">4.9</div>
                                 <div class="text-sm text-gray-600">средний рейтинг</div>
@@ -80,7 +80,7 @@
 
                         <!-- Decoration Elements -->
                         <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-cyan-100 rounded-lg -z-10" />
-                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-100 rounded-lg -z-10" />
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-cyan-100 rounded-lg -z-10" />
                     </div>
                 </div>
             </div>
@@ -88,16 +88,16 @@
 
         <!-- Our Values -->
         <section class="py-12 bg-gray-50 relative overflow-hidden">
-            <div class="container-custom">
+            <div class="container-custom z-10">
                 <h2 class="text-2xl md:text-3xl font-bold mb-10 text-center text-cyan-800 fade-down">Наши ценности
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Value 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform hover:-translate-y-1 fade-up"
+                    <div class=" z-20 relative flex flex-col items-center bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform fade-up"
                         style="animation-delay: 0.1s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
+                            class=" w-10 h-10 flex items-center justify-center rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-heart" class="h-8 w-8 text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-700">Комфорт</h3>
@@ -105,13 +105,15 @@
                             Мы уделяем особое внимание комфорту наших гостей, обеспечивая квартиры всем необходимым для
                             приятного проживания.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 0s;" />
                     </div>
 
                     <!-- Value 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform hover:-translate-y-1 fade-up"
+                    <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform fade-up"
                         style="animation-delay: 0.2s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-shield-check" class="h-8 w-8 text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-700">Надежность</h3>
@@ -119,13 +121,15 @@
                             Мы ценим доверие наших клиентов и всегда выполняем свои обязательства, обеспечивая надежный
                             сервис.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 1s;" />
                     </div>
 
                     <!-- Value 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform hover:-translate-y-1 fade-up"
+                    <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 text-center transform fade-up"
                         style="animation-delay: 0.3s;">
                         <div
-                            class="inline-block p-4 rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-cyan-100 mb-4 transition-transform duration-300 hover:scale-110">
                             <Icon name="i-heroicons-star" class="h-8 w-8 text-cyan-600" />
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-cyan-700">Качество</h3>
@@ -133,13 +137,11 @@
                             Мы постоянно работаем над повышением качества наших услуг, чтобы предоставлять сервис
                             высокого уровня.
                         </p>
+                        <div class="absolute -bottom-3 -left-3 w-8 h-8 bg-cyan-100 rounded-lg -z-10 anim"
+                            style="--delay: 1.5s;" />
                     </div>
                 </div>
             </div>
-
-            <!-- Background decorations -->
-            <div class="absolute top-20 left-10 w-40 h-40 bg-cyan-200 rounded-full opacity-30 blur-3xl" />
-            <div class="absolute bottom-20 right-10 w-60 h-60 bg-accent-200 rounded-full opacity-20 blur-3xl" />
         </section>
 
         <!-- Testimonials -->
@@ -150,11 +152,11 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div v-for="(review, index) in reviews" :key="index"
-                        class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 fade-up"
+                        class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform fade-up"
                         :style="{ 'animation-delay': `${0.1 + index * 0.1}s` }">
                         <div class="flex items-center mb-6">
                             <div
-                                class="bg-cyan-100 text-cyan-600 rounded-full p-3 flex-shrink-0 transition-transform duration-300 hover:scale-110">
+                                class="w-10 h-10 flex items-center justify-center bg-cyan-100 text-cyan-600 rounded-full p-3 flex-shrink-0 transition-transform duration-300 hover:scale-110">
                                 <Icon name="i-heroicons-user-circle" class="h-8 w-8" />
                             </div>
                             <div class="ml-4">
@@ -184,7 +186,7 @@
                 </p>
                 <div class="flex flex-wrap justify-center gap-4 fade-in" style="animation-delay: 0.2s;">
                     <NuxtLink to="/apartments"
-                        class="btn bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        class="btn bg-accent-500 text-white hover:bg-accent-600 py-3 px-8 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform">
                         Смотреть квартиры
                     </NuxtLink>
                     <NuxtLink to="/contacts"
@@ -197,7 +199,7 @@
             <!-- Dynamic animated circles -->
             <div class="absolute top-10 left-1/4 w-32 h-32 bg-cyan-400 rounded-full opacity-20 animate-pulse"
                 style="animation-duration: 6s;" />
-            <div class="absolute bottom-10 right-1/4 w-40 h-40 bg-accent-400 rounded-full opacity-20 animate-pulse"
+            <div class="absolute bottom-10 right-1/4 w-40 h-40 bg-cyan-400 rounded-full opacity-20 animate-pulse"
                 style="animation-duration: 8s;" />
         </section>
     </div>

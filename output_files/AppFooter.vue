@@ -10,15 +10,18 @@
                         проживания.
                     </p>
                     <div class="flex items-center mt-4">
-                        <a href="#"
+                        <a href="https://t.me/ArendaGorodOK" target="_blank" rel="noopener noreferrer"
+                            aria-label="Написать в Telegram"
                             class="text-gray-300 hover:text-white mr-4 transition-colors duration-200 hover:scale-110 transform">
                             <Icon name="i-mdi-telegram" class="h-6 w-6" />
                         </a>
-                        <a href="#"
+                        <a href="https://vk.com/id226682363" target="_blank" rel="noopener noreferrer"
+                            aria-label="Перейти в VK"
                             class="text-gray-300 hover:text-white mr-4 transition-colors duration-200 hover:scale-110 transform">
                             <Icon name="i-mdi-vk" class="h-6 w-6" />
                         </a>
-                        <a href="#"
+                        <a href="https://wa.me/79214794791?text=Здравствуйте!%20Интересует%20аренда%20квартиры%20в%20Мирном"
+                            target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp"
                             class="text-gray-300 hover:text-white transition-colors duration-200 hover:scale-110 transform">
                             <Icon name="i-mdi-whatsapp" class="h-6 w-6" />
                         </a>
@@ -58,17 +61,17 @@
                     <div class="space-y-3">
                         <div class="flex items-start hover:translate-x-1 transition-transform duration-200">
                             <Icon name="i-heroicons-map-pin" class="h-5 w-5 mr-3 mt-1 text-cyan-300" />
-                            <span>г. Мирный, ул. Ленина, д.1, офис 100</span>
+                            <span>г. Мирный, ул. Ленина, д.65, офис 20</span>
                         </div>
                         <div class="flex items-center hover:translate-x-1 transition-transform duration-200">
                             <Icon name="i-heroicons-phone" class="h-5 w-5 mr-3 text-cyan-300" />
-                            <a href="tel:+79000000000" class="hover:text-cyan-300 transition-colors duration-200">+7
-                                (900) 000-00-00</a>
+                            <a href="tel:+79214794791" class="hover:text-cyan-300 transition-colors duration-200">+7
+                                (921) 479-47-91</a>
                         </div>
                         <div class="flex items-center hover:translate-x-1 transition-transform duration-200">
                             <Icon name="i-heroicons-envelope" class="h-5 w-5 mr-3 text-cyan-300" />
-                            <a href="mailto:info@gorodok.ru"
-                                class="hover:text-cyan-300 transition-colors duration-200">info@gorodok.ru</a>
+                            <a href="mailto:9214794791@mail.ru"
+                                class="hover:text-cyan-300 transition-colors duration-200">9214794791@mail.ru</a>
                         </div>
                     </div>
                 </div>

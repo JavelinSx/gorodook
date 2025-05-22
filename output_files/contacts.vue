@@ -1,7 +1,7 @@
 <template>
     <div class="contacts-page">
         <!-- Page Header -->
-        <section class="bg-cyan-800 text-white py-12 relative">
+        <section class="bg-cyan-800 text-white pt-6 pb-16 relative">
             <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
 
@@ -29,6 +29,27 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Contact Info -->
                     <div class="slide-in-left">
+
+                        <!-- Social Media -->
+                        <h3 class="text-xl font-bold mb-4 text-cyan-800">Мы в социальных сетях</h3>
+                        <div class="flex space-x-4 mb-8">
+                            <a href="https://wa.me/79214794791?text=Здравствуйте!%20Интересует%20аренда%20квартиры%20в%20Мирном"
+                                target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp"
+                                class="bg-cyan-100 w-12 h-12 flex items-center justify-center rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
+                                <Icon name="i-mdi-whatsapp" class="h-8 w-8 text-cyan-600" />
+                            </a>
+                            <a href="https://t.me/ArendaGorodOK" target="_blank" rel="noopener noreferrer"
+                                aria-label="Написать в Telegram"
+                                class="bg-cyan-100 w-12 h-12 flex items-center justify-center rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
+                                <Icon name="i-mdi-telegram" class="h-6 w-6 text-cyan-600" />
+                            </a>
+                            <a href="https://vk.com/id226682363" target="_blank" rel="noopener noreferrer"
+                                aria-label="Перейти в VK"
+                                class="bg-cyan-100 w-12 h-12 flex items-center justify-center rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
+                                <Icon name="i-mdi-vk" class="h-6 w-6 text-cyan-600" />
+                            </a>
+                        </div>
+
                         <h2 class="text-2xl font-bold mb-6 text-cyan-800">Наши контакты</h2>
 
                         <div class="space-y-6 mb-8">
@@ -40,7 +61,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-cyan-700">Адрес</h3>
-                                    <p class="text-gray-700">г. Мирный, ул. Ленина, д.1, офис 100</p>
+                                    <p class="text-gray-700">г. Мирный, ул. Ленина, д.65, офис 20</p>
                                     <p class="text-gray-600 text-sm mt-1">Офис работает ежедневно с 9:00 до 20:00</p>
                                 </div>
                             </div>
@@ -53,10 +74,9 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-cyan-700">Телефон</h3>
-                                    <p><a href="tel:+79000000000"
+                                    <p><a href="tel:+79214794791"
                                             class="text-gray-700 hover:text-cyan-600 transition-colors duration-200">+7
-                                            (900)
-                                            000-00-00</a></p>
+                                            (921) 479-47-91</a></p>
                                     <p class="text-gray-600 text-sm mt-1">Звонки принимаются ежедневно с 8:00 до 22:00
                                     </p>
                                 </div>
@@ -70,30 +90,15 @@
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-cyan-700">Email</h3>
-                                    <p><a href="mailto:info@gorodok.ru"
-                                            class="text-gray-700 hover:text-cyan-600 transition-colors duration-200">info@gorodok.ru</a>
+                                    <p><a href="mailto:9214794791@mail.ru"
+                                            class="text-gray-700 hover:text-cyan-600 transition-colors duration-200">9214794791@mail.ru</a>
                                     </p>
                                     <p class="text-gray-600 text-sm mt-1">Мы отвечаем на письма в течение 24 часов</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Social Media -->
-                        <h3 class="text-xl font-bold mb-4 text-cyan-800">Мы в социальных сетях</h3>
-                        <div class="flex space-x-4">
-                            <a href="#"
-                                class="bg-cyan-100 p-3 rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
-                                <Icon name="i-mdi-telegram" class="h-6 w-6 text-cyan-600" />
-                            </a>
-                            <a href="#"
-                                class="bg-cyan-100 p-3 rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
-                                <Icon name="i-mdi-vk" class="h-6 w-6 text-cyan-600" />
-                            </a>
-                            <a href="#"
-                                class="bg-cyan-100 p-3 rounded-full hover:bg-cyan-200 transition-all duration-300 hover:shadow-md transform hover:scale-110">
-                                <Icon name="i-mdi-whatsapp" class="h-6 w-6 text-cyan-600" />
-                            </a>
-                        </div>
+
                     </div>
 
                     <!-- Contact Form -->
@@ -104,9 +109,6 @@
                 </div>
             </div>
 
-            <!-- Background decorations -->
-            <div class="absolute top-20 right-10 w-40 h-40 bg-cyan-100 rounded-full opacity-50 blur-3xl" />
-            <div class="absolute bottom-20 left-10 w-60 h-60 bg-accent-100 rounded-full opacity-30 blur-3xl" />
         </section>
 
         <!-- Map -->

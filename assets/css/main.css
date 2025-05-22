@@ -161,6 +161,33 @@
   }
 }
 
+@keyframes circleAnim {
+  0% {
+    top: calc(100% + var(--spacing) * -3); /* внизу */
+    left: calc(var(--spacing) * -3);
+  }
+  25% {
+    top: calc(var(--spacing) * -4); /* вверху */
+    left: calc(var(--spacing) * -3);
+  }
+  50% {
+    top: calc(var(--spacing) * -4);
+    left: calc(100% + var(--spacing) * -4); /* справа */
+  }
+  75% {
+    top: calc(100% + var(--spacing) * -3);
+    left: calc(100% + var(--spacing) * -4);
+  }
+  100% {
+    top: calc(100% + var(--spacing) * -3);
+    left: calc(var(--spacing) * -3);
+  }
+}
+.anim {
+  animation: circleAnim 10s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
 @keyframes scaleIn {
   from {
     opacity: 0;

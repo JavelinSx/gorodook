@@ -28,10 +28,10 @@
 
             <!-- Contact -->
             <div class="hidden md:flex items-center">
-                <a href="tel:+79000000000"
+                <a href="tel:+79214794791"
                     class="flex items-center text-cyan-600 hover:text-cyan-700 transition-colors duration-200">
                     <Icon name="i-heroicons-phone" class="mr-2 h-5 w-5" />
-                    <span>+7 (900) 000-00-00</span>
+                    <span>+7 (921) 479-47-91</span>
                 </a>
             </div>
 
@@ -61,9 +61,9 @@
                         <NuxtLink to="/contacts" class="nav-link-mobile-class" @click="closeMenu">
                             Контакты
                         </NuxtLink>
-                        <a href="tel:+79000000000" class="nav-link-mobile-class flex items-center">
+                        <a href="tel:+79214794791" class="nav-link-mobile-class flex items-center">
                             <Icon name="i-heroicons-phone" class="mr-2 h-5 w-5 text-cyan-600" />
-                            <span>+7 (900) 000-00-00</span>
+                            <span>+7 (921) 479-47-91</span>
                         </a>
                     </nav>
                 </div>

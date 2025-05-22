@@ -1,11 +1,12 @@
+<!-- pages/apartments/index.vue -->
 <template>
     <div class="apartments-page">
         <!-- Page Header -->
-        <section class="bg-cyan-800 text-white py-12 relative overflow-hidden">
+        <section class="bg-cyan-800 text-white pt-6 pb-16 relative overflow-hidden">
             <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
 
-            <div class="container-custom relative z-10 ">
+            <div class="container-custom relative z-10">
                 <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white fade-in">Наши квартиры</h1>
                 <p class="text-lg text-gray-200 max-w-3xl fade-in pb-[20px]" style="animation-delay: 0.1s;">
                     Комфортабельные квартиры в городе Мирный со всем необходимым для проживания. Выберите подходящий
@@ -25,7 +26,7 @@
         </section>
 
         <!-- Filters Section -->
-        <section class="bg-white border-b border-gray-200 top-[72px] z-40 shadow-sm">
+        <section class="bg-white border-b border-gray-200 md:sticky top-[60px] z-40 shadow-sm">
             <div class="container-custom py-4">
                 <div class="flex flex-wrap items-center gap-4">
                     <!-- Room Filter -->
@@ -33,15 +34,15 @@
                         <label class="text-sm font-medium text-gray-700 block mb-1">Комнаты</label>
                         <div class="flex gap-2">
                             <button class="filter-btn" :class="filters.rooms === null ? 'filter-btn-active' : ''"
-                                @click="toggleRoomFilter(null)">
+                                :disabled="isTransitioning" @click="setRoomFilter(null)">
                                 Все
                             </button>
                             <button class="filter-btn" :class="filters.rooms === 1 ? 'filter-btn-active' : ''"
-                                @click="toggleRoomFilter(1)">
+                                :disabled="isTransitioning" @click="setRoomFilter(1)">
                                 1
                             </button>
                             <button class="filter-btn" :class="filters.rooms === 2 ? 'filter-btn-active' : ''"
-                                @click="toggleRoomFilter(2)">
+                                :disabled="isTransitioning" @click="setRoomFilter(2)">
                                 2
                             </button>
                         </div>
@@ -52,15 +53,15 @@
                         <label class="text-sm font-medium text-gray-700 block mb-1">Балкон</label>
                         <div class="flex gap-2">
                             <button class="filter-btn" :class="filters.hasBalcony === null ? 'filter-btn-active' : ''"
-                                @click="toggleBalconyFilter(null)">
+                                :disabled="isTransitioning" @click="setBalconyFilter(null)">
                                 Все
                             </button>
                             <button class="filter-btn" :class="filters.hasBalcony === true ? 'filter-btn-active' : ''"
-                                @click="toggleBalconyFilter(true)">
+                                :disabled="isTransitioning" @click="setBalconyFilter(true)">
                                 С балконом
                             </button>
                             <button class="filter-btn" :class="filters.hasBalcony === false ? 'filter-btn-active' : ''"
-                                @click="toggleBalconyFilter(false)">
+                                :disabled="isTransitioning" @click="setBalconyFilter(false)">
                                 Без балкона
                             </button>
                         </div>
@@ -72,22 +73,22 @@
                         <div class="flex gap-2">
                             <button class="filter-btn"
                                 :class="filters.minArea === null && filters.maxArea === null ? 'filter-btn-active' : ''"
-                                @click="toggleAreaFilter(null, null)">
+                                :disabled="isTransitioning" @click="setAreaFilter(null, null)">
                                 Все
                             </button>
                             <button class="filter-btn"
                                 :class="filters.minArea === 20 && filters.maxArea === 30 ? 'filter-btn-active' : ''"
-                                @click="toggleAreaFilter(20, 30)">
+                                :disabled="isTransitioning" @click="setAreaFilter(20, 30)">
                                 20-30 м²
                             </button>
                             <button class="filter-btn"
                                 :class="filters.minArea === 30 && filters.maxArea === 40 ? 'filter-btn-active' : ''"
-                                @click="toggleAreaFilter(30, 40)">
+                                :disabled="isTransitioning" @click="setAreaFilter(30, 40)">
                                 30-40 м²
                             </button>
                             <button class="filter-btn"
                                 :class="filters.minArea === 40 && filters.maxArea === null ? 'filter-btn-active' : ''"
-                                @click="toggleAreaFilter(40, null)">
+                                :disabled="isTransitioning" @click="setAreaFilter(40, null)">
                                 40+ м²
                             </button>
                         </div>
@@ -95,8 +96,8 @@
 
                     <!-- Reset Filters -->
                     <button
-                        class="ml-auto text-sm text-cyan-600 hover:text-cyan-700 flex items-center transition-all duration-200 transform hover:translate-x-1"
-                        @click="resetAllFilters">
+                        class="ml-auto text-sm text-cyan-600 hover:text-cyan-700 flex items-center transition-all duration-200 transform hover:translate-x-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                        :disabled="isTransitioning" @click="resetFilters">
                         <Icon name="i-heroicons-x-circle" class="h-4 w-4 mr-1" />
                         Сбросить фильтры
                     </button>
@@ -107,7 +108,7 @@
         <!-- Apartments Listing -->
         <section class="py-12 bg-gray-50 min-h-[500px]">
             <div class="container-custom">
-                <!-- Loading State -->
+                <!-- Loading State (initial load) -->
                 <div v-if="isLoading" class="text-center py-10">
                     <Icon name="i-heroicons-arrow-path" class="h-10 w-10 mx-auto animate-spin text-cyan-500" />
                     <p class="mt-4 text-lg text-gray-600">Загрузка квартир...</p>
@@ -119,31 +120,46 @@
                     <p class="mt-4 text-lg text-red-600">{{ error }}</p>
                 </div>
 
-                <!-- No Results -->
-                <div v-else-if="filteredApartments.length === 0" class="text-center py-10 fade-in">
-                    <Icon name="i-heroicons-face-frown" class="h-10 w-10 mx-auto text-gray-400" />
-                    <p class="mt-4 text-lg text-gray-600">Нет квартир, соответствующих выбранным фильтрам</p>
-                    <button class="mt-4 text-cyan-600 hover:text-cyan-700 flex items-center mx-auto"
-                        @click="resetAllFilters">
-                        <Icon name="i-heroicons-arrow-path" class="h-4 w-4 mr-1" />
-                        Сбросить фильтры
-                    </button>
-                </div>
-
-                <!-- Apartments Grid -->
+                <!-- Main Content -->
                 <div v-else>
                     <!-- Results Count -->
-                    <p class="text-gray-600 mb-6 slide-in-left">
-                        Найдено квартир: {{ filteredApartments.length }}
-                    </p>
+                    <Transition name="fade">
+                        <p v-if="!showSkeleton" class="text-gray-600 mb-6">
+                            Найдено квартир: {{ filteredApartments.length }}
+                        </p>
+                    </Transition>
+
+                    <!-- Skeletons during transition -->
+                    <Transition name="fade">
+                        <div v-if="showSkeleton" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <ApartmentCardSkeleton v-for="i in skeletonCount" :key="`skeleton-${i}`" />
+                        </div>
+                    </Transition>
+
+                    <!-- No Results -->
+                    <Transition name="fade">
+                        <div v-if="!showSkeleton && filteredApartments.length === 0" class="text-center py-10">
+                            <Icon name="i-heroicons-face-frown" class="h-10 w-10 mx-auto text-gray-400" />
+                            <p class="mt-4 text-lg text-gray-600">Нет квартир, соответствующих выбранным фильтрам</p>
+                            <button class="mt-4 text-cyan-600 hover:text-cyan-700 flex items-center mx-auto"
+                                @click="resetFilters">
+                                <Icon name="i-heroicons-arrow-path" class="h-4 w-4 mr-1" />
+                                Сбросить фильтры
+                            </button>
+                        </div>
+                    </Transition>
 
                     <!-- Apartments Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <TransitionGroup name="apartment-card-transition">
-                            <ApartmentCard v-for="(apartment, index) in filteredApartments" :key="apartment.id"
-                                :apartment="apartment" :index="index" animation="scale-in" />
-                        </TransitionGroup>
-                    </div>
+                    <Transition name="fade">
+                        <div v-if="!showSkeleton && filteredApartments.length > 0"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <TransitionGroup name="apartment">
+                                <ApartmentCard v-for="(apartment, index) in filteredApartments" :key="apartment.id"
+                                    :apartment="apartment" :index="index" animation="scale-in"
+                                    :style="{ '--animation-index': index }" />
+                            </TransitionGroup>
+                        </div>
+                    </Transition>
                 </div>
             </div>
         </section>
@@ -151,10 +167,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
 import { useApartmentStore } from '~/store/apartmentStore'
-// Set metadata for this page
+import { useApartmentFilters } from '~/composables/useApartmentFilters'
+
+// Set metadata
 useHead({
     title: 'Квартиры | Городок',
     meta: [
@@ -164,109 +180,125 @@ useHead({
 
 // Get store data
 const apartmentStore = useApartmentStore()
-const { filteredApartments, isLoading, error } = storeToRefs(apartmentStore)
-const { filters } = storeToRefs(apartmentStore)
+const { apartments, isLoading, error } = storeToRefs(apartmentStore)
 
-// Filter methods
-const toggleRoomFilter = (rooms: number | null) => {
-    apartmentStore.setRoomFilter(rooms)
-}
+// Use filters composable
+const {
+    filters,
+    filteredApartments,
+    isTransitioning,
+    showSkeleton,
+    setRoomFilter,
+    setBalconyFilter,
+    setAreaFilter,
+    resetFilters,
+} = useApartmentFilters(apartments)
 
-const toggleBalconyFilter = (hasBalcony: boolean | null) => {
-    apartmentStore.setBalconyFilter(hasBalcony)
-}
+// Calculate skeleton count based on current filters
+const skeletonCount = computed(() => {
+    // Show fewer skeletons if we have active filters
+    const hasActiveFilters = filters.rooms !== null ||
+        filters.hasBalcony !== null ||
+        filters.minArea !== null ||
+        filters.maxArea !== null
 
-const toggleAreaFilter = (min: number | null, max: number | null) => {
-    apartmentStore.setAreaFilter(min, max)
-}
+    return hasActiveFilters ? 3 : 6
+})
 
-const resetAllFilters = () => {
-    apartmentStore.resetFilters()
-}
-
-// Use intersection observer for scroll animations
+// Fetch apartments on mount
 onMounted(() => {
     apartmentStore.fetchApartments()
-    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-        const animatedElements = document.querySelectorAll('.fade-in, .fade-up, .slide-in-left, .scale-in');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        animatedElements.forEach(el => observer.observe(el));
-    }
 })
 </script>
 
 <style scoped>
 .filter-group {
-    @apply min-w-[120px];
+    min-width: 120px;
 }
 
-/* Animation for apartment card transitions */
-.apartment-card-transition-enter-active,
-.apartment-card-transition-leave-active {
+/* Filter button styles */
+.filter-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-radius: 0.375rem;
+    border: 1px solid rgb(209 213 219);
+    color: rgb(55 65 81);
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: rgb(6 182 212);
+    color: rgb(6 182 212);
+}
+
+.filter-btn-active {
+    background-color: rgb(6 182 212);
+    color: white;
+    border-color: rgb(6 182 212);
+}
+
+.filter-btn-active:hover {
+    background-color: rgb(3 105 161);
+    border-color: rgb(3 105 161);
+}
+
+.filter-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.filter-btn:disabled:hover {
+    border-color: rgb(209 213 219);
+    color: rgb(55 65 81);
+}
+
+/* Fade transitions */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* Apartment card animations */
+.apartment-enter-active {
     transition: all 0.5s ease;
+    transition-delay: calc(var(--animation-index, 0) * 100ms);
 }
 
-.apartment-card-transition-enter-from,
-.apartment-card-transition-leave-to {
+.apartment-enter-from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.9) translateY(20px);
 }
 
-/* Add visible class to control animations */
-.fade-in,
-.fade-up,
-.slide-in-left,
-.scale-in {
+.apartment-leave-active {
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.apartment-leave-to {
     opacity: 0;
-    visibility: hidden;
-}
-
-.fade-in.visible,
-.fade-up.visible,
-.slide-in-left.visible,
-.scale-in.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.fade-up {
-    transform: translateY(20px);
-}
-
-.fade-up.visible {
-    transform: translateY(0);
-}
-
-.slide-in-left {
-    transform: translateX(-20px);
-}
-
-.slide-in-left.visible {
-    transform: translateX(0);
-}
-
-.scale-in {
     transform: scale(0.9);
 }
 
-.scale-in.visible {
-    transform: scale(1);
+.apartment-move {
+    transition: transform 0.5s ease;
 }
 
-/* Transition properties */
-.fade-in,
-.fade-up,
-.slide-in-left,
-.scale-in {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out;
+/* Responsive grid adjustments for absolute positioning */
+@media (min-width: 768px) {
+    .apartment-leave-active {
+        width: calc(50% - 1rem);
+    }
+}
+
+@media (min-width: 1024px) {
+    .apartment-leave-active {
+        width: calc(33.333% - 1.333rem);
+    }
 }
 </style>
