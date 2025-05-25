@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 
   // Site configuration for SEO
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
     name: 'Городок - Аренда квартир в Мирном',
     description:
       'Аренда квартир посуточно в городе Мирный, Архангельская область. Комфортабельные квартиры с полным обустройством. Документы о проживании.',
@@ -69,12 +69,12 @@ export default defineNuxtConfig({
   robots: {
     UserAgent: '*',
     Allow: '/',
-    Sitemap: (process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru') + '/sitemap.xml',
+    Sitemap: (process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru') + '/sitemap.xml',
   },
 
   // Sitemap configuration with dynamic routes
   sitemap: {
-    hostname: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
+    hostname: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
     gzip: true,
     routes: async () => {
       // Static routes
@@ -157,11 +157,12 @@ export default defineNuxtConfig({
       ],
 
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'canonical', href: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru' },
+        { rel: 'canonical', href: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru' },
 
         // Swiper CSS
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css' },
@@ -171,9 +172,30 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'dns-prefetch', href: 'https://yandex.ru' },
         { rel: 'dns-prefetch', href: 'https://maps.yandex.ru' },
+        { rel: 'dns-prefetch', href: 'https://mc.yandex.ru' },
       ],
 
-      script: [{ src: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', defer: true }],
+      script: [
+        { src: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', defer: true },
+        // Yandex.Metrika
+        {
+          innerHTML: `
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            ym(96122697, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+          `,
+          type: 'text/javascript',
+        },
+      ],
+
+      noscript: [
+        {
+          innerHTML:
+            '<div><img src="https://mc.yandex.ru/watch/96122697" style="position:absolute; left:-9999px;" alt="" /></div>',
+        },
+      ],
     },
   },
 
@@ -194,24 +216,14 @@ export default defineNuxtConfig({
     },
   },
 
-  // Image optimization for better performance
   image: {
-    quality: 80,
-    format: ['webp'],
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536,
-    },
+    provider: 'none', // Отключить оптимизацию для статики
   },
 
   // Runtime config for environment variables
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
       siteName: 'Городок - Аренда квартир в Мирном',
       siteDescription:
         'Аренда квартир посуточно в городе Мирный, Архангельская область. Комфортабельные квартиры с полным обустройством.',
