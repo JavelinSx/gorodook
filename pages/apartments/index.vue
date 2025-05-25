@@ -1,29 +1,9 @@
-<!-- pages/apartments/index.vue -->
 <template>
     <div class="apartments-page">
         <!-- Page Header -->
-        <section class="bg-cyan-800 text-white pt-6 pb-16 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
-            <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
-
-            <div class="container-custom relative z-10">
-                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white fade-in">Наши квартиры</h1>
-                <p class="text-lg text-gray-200 max-w-3xl fade-in pb-[20px]" style="animation-delay: 0.1s;">
-                    Комфортабельные квартиры в городе Мирный со всем необходимым для проживания. Выберите подходящий
-                    вариант из нашего каталога.
-                </p>
-            </div>
-
-            <!-- Wave bottom -->
-            <div
-                class="absolute bottom-0 left-0 right-0 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    class="fill-gray-50 w-full h-[50px] mb-[-1px]">
-                    <path
-                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
-                </svg>
-            </div>
-        </section>
+        <PageHeaderWidget title="Наши квартиры"
+            description="Комфортабельные квартиры в городе Мирный со всем необходимым для проживания. Выберите подходящий вариант из нашего каталога."
+            size="md" show-wave />
 
         <!-- Filters Section -->
         <section class="bg-white border-b border-gray-200 md:sticky top-[60px] z-40 shadow-sm">
@@ -163,6 +143,9 @@
                 </div>
             </div>
         </section>
+
+        <!-- CTA Section -->
+        <CTASection variant="apartments" show-decorations />
     </div>
 </template>
 
@@ -170,11 +153,18 @@
 import { useApartmentStore } from '~/store/apartmentStore'
 import { useApartmentFilters } from '~/composables/useApartmentFilters'
 
+// Components
+import PageHeaderWidget from '~/components/widgets/PageHeaderWidget.vue'
+import CTASection from '~/components/sections/CTASection.vue'
+
 // Set metadata
 useHead({
     title: 'Квартиры | Городок',
     meta: [
-        { name: 'description', content: 'Аренда комфортабельных квартир в городе Мирный. Выберите подходящий вариант из нашего каталога квартир.' }
+        {
+            name: 'description',
+            content: 'Аренда комфортабельных квартир в городе Мирный. Выберите подходящий вариант из нашего каталога квартир.'
+        }
     ],
 })
 
@@ -205,100 +195,19 @@ const skeletonCount = computed(() => {
     return hasActiveFilters ? 3 : 6
 })
 
-// Fetch apartments on mount
+// Initialize scroll animations
+const { initializeScrollAnimations } = useScrollAnimations()
+
+// Fetch apartments and setup animations on mount
 onMounted(() => {
     apartmentStore.fetchApartments()
+
+    const cleanup = initializeScrollAnimations()
+
+    onBeforeUnmount(() => {
+        cleanup()
+    })
 })
 </script>
 
-<style scoped>
-.filter-group {
-    min-width: 120px;
-}
-
-/* Filter button styles */
-.filter-btn {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    border-radius: 0.375rem;
-    border: 1px solid rgb(209 213 219);
-    color: rgb(55 65 81);
-    transition: all 0.2s ease;
-}
-
-.filter-btn:hover {
-    border-color: rgb(6 182 212);
-    color: rgb(6 182 212);
-}
-
-.filter-btn-active {
-    background-color: rgb(6 182 212);
-    color: white;
-    border-color: rgb(6 182 212);
-}
-
-.filter-btn-active:hover {
-    background-color: rgb(3 105 161);
-    border-color: rgb(3 105 161);
-}
-
-.filter-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.filter-btn:disabled:hover {
-    border-color: rgb(209 213 219);
-    color: rgb(55 65 81);
-}
-
-/* Fade transitions */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-
-/* Apartment card animations */
-.apartment-enter-active {
-    transition: all 0.5s ease;
-    transition-delay: calc(var(--animation-index, 0) * 100ms);
-}
-
-.apartment-enter-from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-}
-
-.apartment-leave-active {
-    transition: all 0.3s ease;
-    position: absolute;
-}
-
-.apartment-leave-to {
-    opacity: 0;
-    transform: scale(0.9);
-}
-
-.apartment-move {
-    transition: transform 0.5s ease;
-}
-
-/* Responsive grid adjustments for absolute positioning */
-@media (min-width: 768px) {
-    .apartment-leave-active {
-        width: calc(50% - 1rem);
-    }
-}
-
-@media (min-width: 1024px) {
-    .apartment-leave-active {
-        width: calc(33.333% - 1.333rem);
-    }
-}
-</style>
+<!-- Все стили теперь в main.css -->

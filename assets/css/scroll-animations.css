@@ -1,0 +1,296 @@
+/* Базовые состояния анимаций */
+.fade-in,
+.fade-up,
+.fade-down,
+.slide-in-left,
+.slide-in-right,
+.bounce-in,
+.scale-in {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+/* Видимые состояния */
+.fade-in.visible,
+.fade-up.visible,
+.fade-down.visible,
+.slide-in-left.visible,
+.slide-in-right.visible,
+.bounce-in.visible,
+.scale-in.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Специфичные трансформации */
+.fade-up {
+  transform: translateY(20px);
+}
+
+.fade-up.visible {
+  transform: translateY(0);
+}
+
+.fade-down {
+  transform: translateY(-20px);
+}
+
+.fade-down.visible {
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  transform: translateX(-30px);
+}
+
+.slide-in-left.visible {
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  transform: translateX(30px);
+}
+
+.slide-in-right.visible {
+  transform: translateX(0);
+}
+
+.scale-in {
+  transform: scale(0.9);
+}
+
+.scale-in.visible {
+  transform: scale(1);
+}
+
+.bounce-in {
+  transform: scale(0.3);
+  transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
+    visibility 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.bounce-in.visible {
+  transform: scale(1);
+  animation: bounceInEffect 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Keyframes для анимаций */
+@keyframes bounceInEffect {
+  0% {
+    transform: scale(0.3);
+  }
+  40% {
+    transform: scale(1.03);
+  }
+  60% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Анимация для декоративных элементов */
+@keyframes circleAnim {
+  0% {
+    top: calc(100% + var(--spacing, 0px) * -3);
+    left: calc(var(--spacing, 0px) * -3);
+  }
+  25% {
+    top: calc(var(--spacing, 0px) * -4);
+    left: calc(var(--spacing, 0px) * -3);
+  }
+  50% {
+    top: calc(var(--spacing, 0px) * -4);
+    left: calc(100% + var(--spacing, 0px) * -4);
+  }
+  75% {
+    top: calc(100% + var(--spacing, 0px) * -3);
+    left: calc(100% + var(--spacing, 0px) * -4);
+  }
+  100% {
+    top: calc(100% + var(--spacing, 0px) * -3);
+    left: calc(var(--spacing, 0px) * -3);
+  }
+}
+
+.anim {
+  animation: circleAnim 10s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Анимация для плавающих элементов */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* CSS-only анимации (для fallback) */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease-out;
+}
+
+.fade-down {
+  animation: fadeDown 0.8s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s ease-out;
+}
+
+.bounce-in {
+  animation: bounceIn 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  60% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive анимации - уменьшаем на мобильных */
+@media (max-width: 768px) {
+  .fade-in,
+  .fade-up,
+  .fade-down,
+  .slide-in-left,
+  .slide-in-right,
+  .bounce-in,
+  .scale-in {
+    transition-duration: 0.6s;
+  }
+
+  .slide-in-left {
+    transform: translateX(-20px);
+  }
+
+  .slide-in-right {
+    transform: translateX(20px);
+  }
+
+  .fade-up {
+    transform: translateY(15px);
+  }
+
+  .fade-down {
+    transform: translateY(-15px);
+  }
+}
+
+/* Уважение к предпочтениям пользователя */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-up,
+  .fade-down,
+  .slide-in-left,
+  .slide-in-right,
+  .bounce-in,
+  .scale-in {
+    transition: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .anim,
+  .animate-float {
+    animation: none;
+  }
+}

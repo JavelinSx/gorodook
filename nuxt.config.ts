@@ -1,4 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// Обновленный nuxt.config.ts с улучшенным SEO для г.Мирный, Архангельская область
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
@@ -52,53 +52,115 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@pinia/nuxt',
     'nuxt-swiper',
-    '@nuxtjs/sitemap',
     '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
 
-  // Site configuration for SEO
+  // Конфигурация сайта для sitemap с улучшенным SEO
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
-    name: 'Городок - Аренда квартир в Мирном',
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
+    name: 'Городок - Аренда квартир посуточно в Мирном Архангельской области',
     description:
-      'Аренда квартир посуточно в городе Мирный, Архангельская область. Комфортабельные квартиры с полным обустройством. Документы о проживании.',
+      'Снять квартиру посуточно в городе Мирный Архангельской области. Комфортные 1-2 комнатные квартиры с современным ремонтом для командировочных и туристов.',
     defaultLocale: 'ru',
   },
 
-  // Robots configuration
+  // Расширенная настройка robots.txt
   robots: {
     UserAgent: '*',
     Allow: '/',
-    Sitemap: (process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru') + '/sitemap.xml',
+    Disallow: ['/admin/', '/api/', '/_nuxt/', '/_ipx/'],
+    Sitemap: (process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru') + '/sitemap.xml',
+    BlankLine: true,
+    Comment: 'Аренда квартир в Мирном Архангельской области',
   },
 
-  // Sitemap configuration with dynamic routes
+  // Оптимизированная настройка sitemap
   sitemap: {
-    hostname: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
-    gzip: true,
-    routes: async () => {
-      // Static routes
-      const staticRoutes = [
-        { url: '/', changefreq: 'weekly', priority: 1.0 },
-        { url: '/apartments', changefreq: 'daily', priority: 0.9 },
-        { url: '/about', changefreq: 'monthly', priority: 0.7 },
-        { url: '/contacts', changefreq: 'monthly', priority: 0.8 },
-        { url: '/privacy', changefreq: 'yearly', priority: 0.3 },
-        { url: '/terms', changefreq: 'yearly', priority: 0.3 },
-      ];
+    discoverImages: false,
+    exclude: ['/admin/**', '/api/**', '/_nuxt/**', '/_ipx/**', '/preview/**'],
 
-      // Dynamic apartment routes
-      const apartmentRoutes = Array.from({ length: 16 }, (_, i) => ({
-        url: `/apartments/${i}`,
-        changefreq: 'weekly',
-        priority: 0.8,
-      }));
-
-      return [...staticRoutes, ...apartmentRoutes];
+    defaults: {
+      changefreq: 'weekly' as const,
+      priority: 0.5,
+      lastmod: new Date().toISOString(),
     },
+
+    urls: async () => {
+      const routes: Array<{
+        loc: string;
+        changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+        priority: number;
+        lastmod: string;
+        alternates?: Array<{ href: string; hreflang: string }>;
+      }> = [];
+
+      // Главная страница с максимальным приоритетом
+      routes.push({
+        loc: '/',
+        changefreq: 'daily' as const,
+        priority: 1.0,
+        lastmod: new Date().toISOString(),
+      });
+
+      // Каталог квартир - высокий приоритет
+      routes.push({
+        loc: '/apartments',
+        changefreq: 'daily' as const,
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
+      });
+
+      // Контакты - важная страница для местного SEO
+      routes.push({
+        loc: '/contacts',
+        changefreq: 'weekly' as const,
+        priority: 0.8,
+        lastmod: new Date().toISOString(),
+      });
+
+      // О нас
+      routes.push({
+        loc: '/about',
+        changefreq: 'monthly' as const,
+        priority: 0.7,
+        lastmod: new Date().toISOString(),
+      });
+
+      // Служебные страницы
+      routes.push(
+        {
+          loc: '/privacy',
+          changefreq: 'yearly' as const,
+          priority: 0.2,
+          lastmod: new Date().toISOString(),
+        },
+        {
+          loc: '/terms',
+          changefreq: 'yearly' as const,
+          priority: 0.2,
+          lastmod: new Date().toISOString(),
+        }
+      );
+
+      // Страницы отдельных квартир
+      for (let i = 0; i < 16; i++) {
+        routes.push({
+          loc: `/apartments/${i}`,
+          changefreq: 'weekly' as const,
+          priority: 0.8,
+          lastmod: new Date().toISOString(),
+        });
+      }
+
+      return routes;
+    },
+
+    autoLastmod: true,
+    credits: false,
   },
 
-  // Prerendering for better SEO
+  // Prerendering с оптимизацией
   nitro: {
     prerender: {
       routes: [
@@ -108,9 +170,11 @@ export default defineNuxtConfig({
         '/contacts',
         '/privacy',
         '/terms',
+        '/sitemap.xml',
+        '/robots.txt',
         ...Array.from({ length: 16 }, (_, i) => `/apartments/${i}`),
       ],
-      crawlLinks: true,
+      crawlLinks: false,
     },
   },
 
@@ -124,72 +188,234 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: 'ru',
+        dir: 'ltr',
       },
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
         { name: 'format-detection', content: 'telephone=no' },
 
-        // SEO Meta Tags
-        { name: 'author', content: 'Городок - Аренда квартир в Мирном' },
-        { name: 'robots', content: 'index, follow' },
-        { name: 'googlebot', content: 'index, follow' },
-        { name: 'theme-color', content: '#0ea5e9' },
+        // Основная SEO информация
+        { name: 'author', content: 'Городок - аренда квартир в Мирном' },
+        { name: 'publisher', content: 'Городок' },
+        { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+        { name: 'googlebot', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+        { name: 'bingbot', content: 'index, follow' },
+        { name: 'yandexbot', content: 'index, follow' },
 
-        // Regional SEO
+        // Локальное SEO для Мирного
         { name: 'geo.region', content: 'RU-ARK' },
-        { name: 'geo.placename', content: 'Мирный, Архангельская область' },
+        { name: 'geo.placename', content: 'Мирный, Архангельская область, Россия' },
         { name: 'geo.position', content: '62.7676;40.3348' },
         { name: 'ICBM', content: '62.7676, 40.3348' },
+        { name: 'location', content: 'Мирный, Архангельская область' },
 
-        // Business Information
+        // Бизнес информация
         { name: 'contact', content: '9214794791@mail.ru' },
         { name: 'organization', content: 'Городок' },
+        { name: 'locality', content: 'Мирный' },
+        { name: 'region', content: 'Архангельская область' },
+        { name: 'country', content: 'Россия' },
 
-        // Yandex and Google verification
-        { name: 'yandex-verification', content: process.env.YANDEX_VERIFICATION || '' },
-        { name: 'google-site-verification', content: process.env.GOOGLE_VERIFICATION || '' },
+        // Ключевые слова для лучшего понимания контента
+        {
+          name: 'keywords',
+          content:
+            'аренда квартир Мирный, снять квартиру Мирный Архангельская область, квартиры посуточно Мирный, жилье командировочным Мирный, гостиница Мирный, апартаменты Мирный, краткосрочная аренда Мирный',
+        },
 
-        // Additional SEO
-        { name: 'application-name', content: 'Городок' },
-        { name: 'apple-mobile-web-app-title', content: 'Городок' },
+        // Тематические категории
+        { name: 'category', content: 'Недвижимость, Аренда жилья, Туризм' },
+        { name: 'coverage', content: 'Мирный, Архангельская область' },
+        { name: 'distribution', content: 'Global' },
+        { name: 'rating', content: 'General' },
+
+        // Технические мета-теги
+        { name: 'theme-color', content: '#0ea5e9' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         { name: 'msapplication-TileColor', content: '#0ea5e9' },
-      ],
+        { name: 'application-name', content: 'Городок - Аренда квартир Мирный' },
+        { name: 'apple-mobile-web-app-title', content: 'Городок Мирный' },
 
+        // Верификация поисковых систем
+        { name: 'yandex-verification', content: '54a58e117daa0e88' },
+        { name: 'google-site-verification', content: '8qZ6fFeBhLWiIgvWMjH2QRxCLkDYQsyH1Q8aU4b-6Zo' },
+
+        // Open Graph расширенная разметка
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Городок - Аренда квартир в Мирном Архангельской области' },
+        { property: 'og:locale', content: 'ru_RU' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:type', content: 'image/jpeg' },
+
+        // Twitter Card
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@gorodok_mirny' },
+        { name: 'twitter:creator', content: '@gorodok_mirny' },
+
+        // Дополнительные микроданные
+        { name: 'business:contact_data:street_address', content: 'ул. Ленина, д.65, офис 20' },
+        { name: 'business:contact_data:locality', content: 'Мирный' },
+        { name: 'business:contact_data:region', content: 'Архангельская область' },
+        { name: 'business:contact_data:postal_code', content: '164170' },
+        { name: 'business:contact_data:country_name', content: 'Россия' },
+        { name: 'business:contact_data:phone_number', content: '+7-921-479-47-91' },
+        { name: 'business:contact_data:email', content: '9214794791@mail.ru' },
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'canonical', href: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru' },
 
-        // Swiper CSS
+        // Стили
         { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css' },
 
-        // Preconnect to external domains
+        // Шрифты с оптимизацией
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+
+        // DNS предзагрузка для важных сервисов
         { rel: 'dns-prefetch', href: 'https://yandex.ru' },
         { rel: 'dns-prefetch', href: 'https://maps.yandex.ru' },
         { rel: 'dns-prefetch', href: 'https://mc.yandex.ru' },
-      ],
+        { rel: 'dns-prefetch', href: 'https://google.com' },
+        { rel: 'dns-prefetch', href: 'https://maps.google.com' },
 
+        // Canonical URL будет добавлен динамически на каждой странице
+
+        // Альтернативные версии (если планируется)
+        // { rel: 'alternate', hreflang: 'ru', href: 'https://gorodook.ru' },
+      ],
       script: [
         { src: 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', defer: true },
-        // Yandex.Metrika
+
+        // Расширенные структурированные данные JSON-LD
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'RealEstateAgent',
+            '@id': 'https://gorodook.ru/#organization',
+            name: 'Городок',
+            alternateName: 'Городок Мирный',
+            description:
+              'Аренда квартир посуточно в городе Мирный Архангельской области. Комфортабельные 1-2 комнатные квартиры для командировочных и туристов.',
+            url: 'https://gorodook.ru',
+            telephone: '+7-921-479-47-91',
+            email: '9214794791@mail.ru',
+            faxNumber: '+7-921-479-47-91',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'ул. Ленина, д.65, офис 20',
+              addressLocality: 'Мирный',
+              addressRegion: 'Архангельская область',
+              postalCode: '164170',
+              addressCountry: {
+                '@type': 'Country',
+                name: 'Россия',
+              },
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 62.7676,
+              longitude: 40.3348,
+            },
+            openingHoursSpecification: {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '08:00',
+              closes: '22:00',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+7-921-479-47-91',
+              contactType: 'customer service',
+              areaServed: 'RU-ARK',
+              availableLanguage: 'Russian',
+            },
+            sameAs: ['https://t.me/ArendaGorodOK', 'https://vk.com/id226682363', 'https://wa.me/79214794791'],
+            areaServed: {
+              '@type': 'City',
+              name: 'Мирный',
+              containedInPlace: {
+                '@type': 'AdministrativeArea',
+                name: 'Архангельская область',
+                containedInPlace: {
+                  '@type': 'Country',
+                  name: 'Россия',
+                },
+              },
+            },
+            serviceType: ['Аренда квартир посуточно', 'Краткосрочная аренда жилья', 'Жилье для командировочных'],
+            priceRange: '$$',
+            paymentAccepted: ['Cash', 'Credit Card'],
+            currenciesAccepted: 'RUB',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.9',
+              reviewCount: '150',
+              bestRating: '5',
+              worstRating: '1',
+            },
+          }),
+        },
+
+        // Дополнительная схема для локального бизнеса
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            '@id': 'https://gorodook.ru/#localbusiness',
+            name: 'Городок - Аренда квартир в Мирном',
+            image: 'https://gorodook.ru/img/about-us.png',
+            description:
+              'Снять квартиру посуточно в Мирном Архангельской области. Комфортные апартаменты с современным ремонтом.',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'ул. Ленина, д.65, офис 20',
+              addressLocality: 'Мирный',
+              addressRegion: 'Архангельская область',
+              postalCode: '164170',
+              addressCountry: 'RU',
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 62.7676,
+              longitude: 40.3348,
+            },
+            telephone: '+7-921-479-47-91',
+            url: 'https://gorodook.ru',
+            openingHours: 'Mo-Su 08:00-22:00',
+            priceRange: '2000-3000 RUB',
+            servesCuisine: 'Accommodation',
+            acceptsReservations: true,
+          }),
+        },
+
+        // Яндекс.Метрика
         {
           innerHTML: `
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-            ym(96122697, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+            ym(96122697, "init", { 
+              clickmap:true, 
+              trackLinks:true, 
+              accurateTrackBounce:true, 
+              webvisor:true,
+              ecommerce:"dataLayer"
+            });
           `,
           type: 'text/javascript',
         },
       ],
-
       noscript: [
         {
           innerHTML:
@@ -216,21 +442,30 @@ export default defineNuxtConfig({
     },
   },
 
-  image: {
-    provider: 'none', // Отключить оптимизацию для статики
-  },
-
-  // Runtime config for environment variables
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodok-mirny.ru',
-      siteName: 'Городок - Аренда квартир в Мирном',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
+      siteName: 'Городок - Аренда квартир посуточно в Мирном Архангельской области',
       siteDescription:
-        'Аренда квартир посуточно в городе Мирный, Архангельская область. Комфортабельные квартиры с полным обустройством.',
+        'Снять квартиру посуточно в городе Мирный Архангельской области. Комфортабельные 1-2 комнатные квартиры с современным ремонтом для командировочных, туристов и гостей города.',
       contactPhone: '+79214794791',
+      contactPhoneFormatted: '+7 (921) 479-47-91',
       contactEmail: '9214794791@mail.ru',
       contactAddress: 'г. Мирный, ул. Ленина, д.65, офис 20',
+      contactAddressFull: 'г. Мирный, Архангельская область, ул. Ленина, д.65, офис 20, 164170',
       region: 'Архангельская область',
+      city: 'Мирный',
+      businessHours: 'Ежедневно с 8:00 до 22:00',
+      serviceArea: 'г. Мирный и окрестности',
+
+      // SEO ключевые фразы для разных страниц
+      seoKeywords: {
+        main: 'аренда квартир Мирный, снять квартиру Мирный Архангельская область, квартиры посуточно Мирный',
+        apartments:
+          'каталог квартир Мирный, выбрать квартиру Мирный, 1 комнатная квартира Мирный, 2 комнатная квартира Мирный',
+        contacts: 'забронировать квартиру Мирный, контакты аренда Мирный, телефон бронирование Мирный',
+        about: 'агентство недвижимости Мирный, услуги аренды Мирный, компания Городок Мирный',
+      },
     },
   },
 });

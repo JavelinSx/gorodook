@@ -1,6 +1,7 @@
 <template>
-    <header class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300" :class="{ 'shadow-md': scrolled }">
-        <div class="container-custom py-4 flex items-center justify-between">
+    <header
+        class="bg-white w-full h-[60px] flex items-center justify-center shadow-sm transition-all duration-300 fixed z-50">
+        <div class="container-custom py-4 flex  items-center justify-between z-50 top-0 ">
             <!-- Logo -->
             <div class="flex items-center">
                 <NuxtLink to="/"
@@ -11,7 +12,7 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="hidden md:flex space-x-8  text-cyan-600 hover:text-cyan-700">
+            <nav class="hidden md:flex space-x-8 text-cyan-600 hover:text-cyan-700">
                 <NuxtLink to="/" class="nav-link-class">
                     Главная
                 </NuxtLink>
@@ -37,16 +38,18 @@
 
             <!-- Mobile Menu Button -->
             <button
-                class="md:hidden text-gray-500 hover:text-cyan-600 focus:outline-none transition-transform duration-300"
+                class="md:hidden text-gray-500 hover:text-cyan-600 focus:outline-none transition-transform duration-300 relative z-[60]"
                 aria-label="Toggle menu" @click="toggleMenu">
                 <Icon v-if="!isMenuOpen" name="i-heroicons-bars-3" class="h-6 w-6" />
                 <Icon v-else name="i-heroicons-x-mark" class="h-6 w-6" />
             </button>
         </div>
-
-        <!-- Mobile Menu -->
         <Transition name="slide-down">
-            <div v-if="isMenuOpen" class="md:hidden bg-white absolute w-full shadow-lg">
+            <div v-if="isMenuOpen" class="fixed bg-white shadow-lg md:hidden z-[55]" :style="{
+                top: headerHeight + 'px',
+                left: '0',
+                right: '0'
+            }">
                 <div class="container-custom py-4">
                     <nav class="flex flex-col space-y-4">
                         <NuxtLink to="/" class="nav-link-mobile-class" @click="closeMenu">
@@ -70,11 +73,20 @@
             </div>
         </Transition>
     </header>
+
+    <!-- Mobile Menu - вынесен за пределы header -->
+
+
+
+
+
 </template>
 
 <script setup lang="ts">
 const isMenuOpen = ref(false)
 const scrolled = ref(false)
+const headerHeight = ref(60)
+const menuHeight = ref(240) // Примерная высота меню
 
 // Toggle mobile menu
 const toggleMenu = () => {
@@ -83,6 +95,8 @@ const toggleMenu = () => {
 
 // Close mobile menu
 const closeMenu = () => {
+    if (!isMenuOpen.value) return
+
     isMenuOpen.value = false
 }
 
@@ -91,22 +105,13 @@ const route = useRoute()
 watch(
     () => route.path,
     () => {
-        isMenuOpen.value = false
+        closeMenu()
     }
 )
 
-// Track scroll position for header effects
-onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
-})
 
-onBeforeUnmount(() => {
-    window.removeEventListener('scroll', handleScroll)
-})
 
-const handleScroll = () => {
-    scrolled.value = window.scrollY > 20
-}
+
 </script>
 
 <style scoped>
@@ -117,7 +122,17 @@ const handleScroll = () => {
 
 .slide-down-enter-from,
 .slide-down-leave-to {
-    transform: translateY(-20px);
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
     opacity: 0;
 }
 </style>
