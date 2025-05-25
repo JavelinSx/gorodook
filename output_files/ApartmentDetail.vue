@@ -67,8 +67,8 @@
                     <div v-if="apartment.nearby.length" class="mb-6">
                         <h2 class="text-lg font-bold mb-3 text-cyan-700">Рядом</h2>
                         <div class="flex items-center space-x-3">
-                            <NuxtImg v-for="(icon, index) in apartment.nearby" :key="index" :src="icon"
-                                alt="Place nearby" class="h-8 w-8" />
+                            <img v-for="(icon, index) in apartment.nearby" :key="index" :src="icon" alt="Place nearby"
+                                class="h-8 w-8" loading="lazy">
                         </div>
                     </div>
 

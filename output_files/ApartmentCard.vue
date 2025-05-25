@@ -8,9 +8,9 @@
                     :pagination="true" :loop="true" :autoplay="{ delay: 4000, disableOnInteraction: false }"
                     class="h-full w-full card-swiper">
                     <swiper-slide v-for="(image, idx) in apartment.images" :key="idx">
-                        <NuxtImg :src="image" :alt="`Изображение квартиры ${idx + 1}`"
+                        <img :src="image" :alt="`Изображение квартиры ${idx + 1}`"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            placeholder />
+                            loading="lazy">
                     </swiper-slide>
                 </swiper-container>
             </ClientOnly>

@@ -30,8 +30,8 @@
                             <swiper-slide v-for="(image, index) in images" :key="index"
                                 class="flex items-center justify-center">
                                 <div class="swiper-zoom-container">
-                                    <NuxtImg :src="image" :alt="`Изображение ${index + 1}`"
-                                        class="max-w-full max-h-[calc(100vh-160px)] object-contain" placeholder />
+                                    <img :src="image" :alt="`Изображение ${index + 1}`"
+                                        class="max-w-full max-h-[calc(100vh-160px)] object-contain" loading="lazy">
                                 </div>
                             </swiper-slide>
                         </swiper-container>
@@ -45,7 +45,8 @@
                             class="cursor-pointer w-20 h-16 rounded overflow-hidden transition-all duration-300 flex-shrink-0"
                             :class="{ 'ring-2 ring-white': currentSlide === index, 'opacity-60 hover:opacity-90': currentSlide !== index }"
                             @click="goToSlide(index)">
-                            <NuxtImg :src="image" :alt="`Миниатюра ${index + 1}`" class="w-full h-full object-cover" />
+                            <img :src="image" :alt="`Миниатюра ${index + 1}`" class="w-full h-full object-cover"
+                                loading="lazy">
                         </div>
                     </div>
                 </div>

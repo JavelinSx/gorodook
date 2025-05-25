@@ -1,7 +1,14 @@
 <template>
     <section class="relative bg-cyan-800 text-white pt-20 pb-32 overflow-hidden">
-        <img src="/img/bg-home.png"
-            class="absolute top-1/5 right-[-50px] md:top-0 md:right-[-50px] md:inset-y-1/3 md:w-3/4 md:right-0 lg:top-0 lg:w-3/5 2xl:w-1/2 2xl:top-0">
+        <!-- Оптимизированное фоновое изображение -->
+        <OptimizedImage src="/img/bg-home.webp" alt="Фон главной страницы" :priority="true" loading="eager"
+            :use-web-p="true"
+            class="absolute top-2/5 right-[-50px] md:top-0 md:right-[-50px] md:top-3/5 md:w-4/5 lg:right-[-100px] lg:top-[245px] lg:w-3/5 2xl:w-1/2 2xl:top-[225px] object-cover"
+            :style="{
+                aspectRatio: '16/9',
+                willChange: 'transform',
+                backfaceVisibility: 'hidden'
+            }" />
 
         <div class="container-custom relative z-10">
             <div class="max-w-4xl mx-auto text-center">
@@ -9,7 +16,7 @@
                     Аренда квартир посуточно<br>
                     <span class="text-cyan-200">в Мирном</span>
                 </h1>
-                <p class="text-xl md:text-2xl mb-8 text-cyan-100 fade-in" style="animation-delay: 0.2s;">
+                <p class="text-xl md:text-2xl mb-8 text-gray-100 fade-in" style="animation-delay: 0.2s;">
                     Комфортабельные 1-2 комнатные квартиры в центре города Мирный, Архангельская область.
                     Идеально для командировочных, туристов и гостей города.
                 </p>
@@ -26,17 +33,17 @@
 
                 <!-- Дополнительная SEO информация -->
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 fade-up" style="animation-delay: 0.6s;">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">От 2500₽ за сутки</h3>
-                        <p class="text-cyan-100 text-sm">Скидки при длительном проживании</p>
+                        <p class=" text-sm">Скидки при длительном проживании</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">Центр Мирного</h3>
-                        <p class="text-cyan-100 text-sm">Рядом с магазинами и остановками</p>
+                        <p class=" text-sm">Рядом с магазинами и остановками</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">Все включено</h3>
-                        <p class="text-cyan-100 text-sm">Wi-Fi, техника, постельное белье</p>
+                        <p class=" text-sm">Wi-Fi, техника, постельное белье</p>
                     </div>
                 </div>
             </div>
@@ -54,5 +61,117 @@
 </template>
 
 <script setup lang="ts">
+import OptimizedImage from '../ui/OptimizedImage.vue'
+// Preload критических ресурсов
+useSeoMeta({
+    title: 'Аренда квартир посуточно в Мирном | Городок',
+    description: 'Комфортабельные 1-2 комнатные квартиры в центре Мирного, Архангельская область. Идеально для командировочных и туристов. От 2500₽ за сутки.',
+})
+
+// Preload критических изображений только если они существуют
+useHead(() => {
+    if (!import.meta.client) return {}
+
+    // Проверяем поддержку WebP
+    const canvas = document.createElement('canvas')
+    const webpSupported = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0
+
+    const links: Array<{
+        rel: 'preload'
+        href: string
+        as: 'image'
+        type?: string
+        fetchpriority: 'high' | 'low'
+    }> = []
+
+    if (webpSupported) {
+        links.push({
+            rel: 'preload',
+            href: '/img/bg-home.webp',
+            as: 'image',
+            type: 'image/webp',
+            fetchpriority: 'high'
+        })
+    } else {
+        links.push({
+            rel: 'preload',
+            href: '/img/bg-home.png',
+            as: 'image',
+            fetchpriority: 'high'
+        })
+    }
+
+    return { link: links }
+})
+
 // Hero section component - главная секция с заголовком и CTA
+onMounted(() => {
+    // Принудительная оптимизация рендеринга
+    if (import.meta.client) {
+        requestAnimationFrame(() => {
+            // Добавляем contain для оптимизации layout
+            const heroSection = document.querySelector('section')
+            if (heroSection) {
+                heroSection.style.contain = 'layout style paint'
+            }
+        })
+    }
+})
 </script>
+
+<style scoped>
+/* Оптимизация производительности */
+section {
+    will-change: auto;
+    contain: layout style paint;
+}
+
+/* Оптимизированные анимации */
+.fade-in,
+.fade-up {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0);
+    animation: fadeInOptimized 0.6s ease-out forwards;
+}
+
+.fade-up {
+    transform: translateY(20px);
+    animation: fadeUpOptimized 0.8s ease-out forwards;
+}
+
+@keyframes fadeInOptimized {
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUpOptimized {
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* Респект к предпочтениям пользователя */
+@media (prefers-reduced-motion: reduce) {
+
+    .fade-in,
+    .fade-up {
+        animation: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+}
+
+/* Оптимизация для больших экранов */
+@media (min-width: 1920px) {
+    .container-custom {
+        contain: layout;
+    }
+}
+</style>

@@ -2,7 +2,7 @@
 <template>
     <div class="privacy-page">
         <section class="bg-cyan-800 text-white pt-6 pb-16 relative">
-            <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center" />
+            <div class="absolute inset-0 opacity-30 bg-[url('/img/hero-bg.webp')] bg-cover bg-center" />
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50" />
 
             <div class="container-custom relative z-10">

@@ -47,7 +47,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    backgroundImage: '/img/hero-bg.jpg',
+    backgroundImage: '/img/hero-bg.webp',
     backgroundColor: 'bg-cyan-800',
     size: 'md',
     titleTag: 'h1',
@@ -70,8 +70,8 @@ const backgroundStyle = computed(() => {
 const sectionClass = computed(() => {
     const sizeClasses = {
         sm: 'pt-4 pb-12',
-        md: 'pt-6 pb-16',
-        lg: 'pt-8 pb-20'
+        md: 'pt-20 pb-16',
+        lg: 'pt-20 pb-20'
     }
 
     const alignClasses = {

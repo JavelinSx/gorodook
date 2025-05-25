@@ -9,8 +9,8 @@
                 @swiper-slide-change="onSlideChange">
                 <swiper-slide v-for="(image, index) in images" :key="index" class="relative">
                     <div class="swiper-zoom-container">
-                        <NuxtImg :src="image" :alt="`Изображение ${index + 1}`"
-                            class="w-full h-[350px] sm:h-[450px] md:h-[500px] object-cover" placeholder />
+                        <img :src="image" :alt="`Изображение ${index + 1}`"
+                            class="w-full h-[350px] sm:h-[450px] md:h-[500px] object-cover" loading="lazy">
                     </div>
 
                     <!-- Room badge -->
@@ -35,7 +35,7 @@
                 class="cursor-pointer h-16 md:h-20 w-20 md:w-24 flex-shrink-0 rounded overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                 :class="{ 'ring-2 ring-cyan-500': activeIndex === index, 'opacity-70 hover:opacity-100': activeIndex !== index }"
                 @click="goToSlide(index)">
-                <NuxtImg :src="image" :alt="`Миниатюра ${index + 1}`" class="w-full h-full object-cover" placeholder />
+                <img :src="image" :alt="`Миниатюра ${index + 1}`" class="w-full h-full object-cover" loading="lazy">
             </div>
         </div>
     </div>
