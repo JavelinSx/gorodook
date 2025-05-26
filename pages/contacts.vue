@@ -1,29 +1,17 @@
 <template>
     <div class="contacts-page">
         <!-- Page Header -->
-        <PageHeaderWidget 
-            title="Контакты"
-            description="Свяжитесь с нами, чтобы забронировать квартиру или получить дополнительную информацию."
-            size="md"
-            show-wave />
+        <PageHeaderWidget title="Снять квартиру в Мирном - контакты"
+            description="Свяжитесь с нами, чтобы снять квартиру посуточно в Мирном или получить информацию о жилье на сутки."
+            size="md" show-wave />
 
         <!-- Contact Information -->
-        <ContactWidget 
-            title="Наши контакты"
-            form-title="Оставьте заявку"
-            :selected-apartment="selectedApartment"
-            :show-social="true"
-            social-title="Мы в социальных сетях"
-            background-color="gray" />
+        <ContactWidget title="Наши контакты" form-title="Оставьте заявку" :selected-apartment="selectedApartment"
+            :show-social="true" social-title="Мы в социальных сетях" background-color="gray" />
 
         <!-- Map Section -->
-        <MapWidget 
-            title="Наш офис на карте" 
-            description="Мы находимся в центре города Мирный"
-            :map-url="contactData.maps.office"
-            :show-content="true"
-            background-color="white"
-            height="96" />
+        <MapWidget title="Наш офис на карте" description="Мы находимся в центре города Мирный"
+            :map-url="contactData.maps.office" :show-content="true" background-color="white" height="96" />
     </div>
 </template>
 
@@ -38,11 +26,11 @@ import MapWidget from '~/components/widgets/MapWidget.vue'
 
 // Set metadata for this page
 useHead({
-    title: 'Контакты | Городок',
+    title: 'Контакты | Снять квартиру в Мирном посуточно',
     meta: [
         {
             name: 'description',
-            content: 'Свяжитесь с нами, чтобы забронировать квартиру или получить дополнительную информацию об аренде квартир в городе Мирный.'
+            content: 'Свяжитесь с нами, чтобы снять квартиру в Мирном посуточно без посредников. Контакты для бронирования квартир на сутки в центре города.'
         }
     ],
 })

@@ -2,11 +2,11 @@
     <section class="py-16 bg-gray-50">
         <div class="container-custom">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-cyan-800 fade-down">
-                Популярные квартиры в Мирном
+                Квартиры посуточно в Мирном Архангельской области
             </h2>
             <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto fade-down" style="animation-delay: 0.1s;">
-                Выберите подходящую 1-комнатную или 2-комнатную квартиру в центре Мирного.
-                Все квартиры оборудованы современной техникой и мебелью.
+                Снять квартиру в Мирном без посредников недорого. Однокомнатные и двухкомнатные
+                квартиры на сутки в центре города. Все квартиры посуточно оборудованы современной техникой и мебелью.
             </p>
 
             <div v-if="!isLoading && apartments.length > 0"

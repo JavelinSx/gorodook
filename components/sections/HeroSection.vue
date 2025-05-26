@@ -13,17 +13,17 @@
         <div class="container-custom relative z-10">
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight fade-in">
-                    Аренда квартир посуточно<br>
-                    <span class="text-cyan-200">в Мирном</span>
+                    Снять квартиру в Мирном<br>
+                    <span class="text-cyan-200">посуточно без посредников</span>
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 text-gray-100 fade-in" style="animation-delay: 0.2s;">
-                    Комфортабельные 1-2 комнатные квартиры в центре города Мирный, Архангельская область.
-                    Идеально для командировочных, туристов и гостей города.
+                    Квартиры посуточно в Мирном Архангельской области недорого.
+                    Однокомнатные и двухкомнатные квартиры на сутки в центре города.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4 fade-in" style="animation-delay: 0.4s;">
                     <NuxtLink to="/apartments"
                         class="btn bg-accent-500 text-white hover:bg-accent-600 px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        Выбрать квартиру
+                        Снять квартиру
                     </NuxtLink>
                     <a href="tel:+79214794791"
                         class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-cyan-900 px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300">
@@ -33,17 +33,17 @@
 
                 <!-- Дополнительная SEO информация -->
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 fade-up" style="animation-delay: 0.6s;">
-                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
+                    <div class="bg-cyan-700/70  rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">От 2500₽ за сутки</h3>
-                        <p class=" text-sm">Скидки при длительном проживании</p>
+                        <p class="text-gray-100 text-sm">Квартиры посуточно недорого без посредников</p>
                     </div>
-                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
+                    <div class="bg-cyan-700/70  backdrop-blur-sm rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">Центр Мирного</h3>
-                        <p class=" text-sm">Рядом с магазинами и остановками</p>
+                        <p class="text-gray-100 text-sm">Жилье рядом с магазинами и остановками</p>
                     </div>
-                    <div class="bg-cyan-700/70 text-gray-100 rounded-lg p-4">
+                    <div class="bg-cyan-700/70  backdrop-blur-sm rounded-lg p-4">
                         <h3 class="font-bold text-lg mb-2">Все включено</h3>
-                        <p class=" text-sm">Wi-Fi, техника, постельное белье</p>
+                        <p class="text-gray-100 text-sm">Wi-Fi, техника, постельное белье</p>
                     </div>
                 </div>
             </div>

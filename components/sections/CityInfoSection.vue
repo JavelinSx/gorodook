@@ -4,11 +4,12 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="slide-in-left">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-cyan-800">
-                        Аренда жилья в Мирном Архангельской области
+                        Жилье в Мирном Архангельской области
                     </h2>
                     <p class="text-gray-700 mb-4 text-lg">
                         Мирный - это современный город в Архангельской области с развитой инфраструктурой.
-                        Наши квартиры расположены в самых удобных районах города, рядом с:
+                        Наши квартиры посуточно расположены в самых удобных районах города, где можно
+                        снять квартиру недорого рядом с:
                     </p>
                     <ul class="space-y-3 text-gray-700 mb-6">
                         <li v-for="feature in cityFeatures" :key="feature" class="flex items-center">
@@ -17,8 +18,8 @@
                         </li>
                     </ul>
                     <p class="text-gray-700 mb-6">
-                        Идеально подходит для командировочных, специалистов предприятий, туристов и всех,
-                        кому необходимо комфортное временное жилье в Мирном.
+                        Идеально подходит для тех, кто хочет снять квартиру в Мирном посуточно для командировки,
+                        туризма или других целей. Все наши квартиры на сутки обеспечат комфортное проживание.
                     </p>
                     <NuxtLink to="/about"
                         class="btn bg-transparent border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white px-6 py-3 rounded-lg transition-all duration-300">

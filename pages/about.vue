@@ -1,9 +1,9 @@
 <template>
     <div class="overflow-hidden">
         <!-- Page Header -->
-        <PageHeaderWidget title="О нас"
-            description="Узнайте больше о нашей компании и почему наши клиенты выбирают именно нас." size="md"
-            show-wave />
+        <PageHeaderWidget title="О компании Городок"
+            description="Снимать квартиры в Мирном без посредников с 2015 года. Узнайте, почему наши клиенты выбирают именно наши квартиры посуточно."
+            size="md" show-wave />
 
         <!-- История компании -->
         <ContentSection title="Мы создаем комфорт" :paragraphs="companyStory" :stats="companyStats"
@@ -36,11 +36,11 @@ import CTASection from '~/components/sections/CTASection.vue'
 
 // Set metadata for this page
 useHead({
-    title: 'О нас | Городок',
+    title: 'О нас | Снимать квартиры в Мирном без посредников с 2015 года',
     meta: [
         {
             name: 'description',
-            content: 'Компания "Городок" предоставляет в аренду комфортабельные квартиры в городе Мирный. Узнайте больше о нашей компании и почему клиенты выбирают именно нас.'
+            content: 'Компания "Городок" предлагает снять квартиру в Мирном посуточно без посредников. Узнайте больше о нашей компании и почему клиенты выбирают наши квартиры на сутки.'
         }
     ],
 })

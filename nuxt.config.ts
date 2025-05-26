@@ -240,10 +240,6 @@ export default defineNuxtConfig({
 
   // Vite оптимизация с исправлением
   vite: {
-    define: {
-      // Исправляем проблему с @nuxt/kit
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
-    },
     optimizeDeps: {
       exclude: ['@nuxt/kit'],
       include: ['swiper', 'web-vitals'],
@@ -286,7 +282,17 @@ export default defineNuxtConfig({
         // Основная SEO информация
         { name: 'author', content: 'Городок - аренда квартир в Мирном' },
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+        {
+          name: 'description',
+          content:
+            'Снять квартиру в Мирном Архангельской области посуточно без посредников. Квартиры посуточно недорого в центре города для командировочных и туристов. Жилье на сутки от собственника.',
+        },
 
+        {
+          name: 'keywords',
+          content:
+            'снять квартиру в мирном, мирный квартиры посуточно, снять квартиру в мирном архангельской области посуточно, квартиры посуточно мирный архангельская область, снять квартиру посуточно без посредников, квартира посуточно без посредников недорого, однокомнатная квартира посуточно, квартира на сутки мирный',
+        },
         // Локальное SEO для Мирного
         { name: 'geo.region', content: 'RU-ARK' },
         { name: 'geo.placename', content: 'Мирный, Архангельская область, Россия' },
