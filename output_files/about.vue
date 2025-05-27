@@ -13,10 +13,6 @@
         <ValuesGridSection title="Наши ценности" description="Принципы, которыми мы руководствуемся в работе"
             :items="companyValues" :columns="3" background-color="gray" />
 
-        <!-- Отзывы клиентов -->
-        <ReviewsSection title="Отзывы наших клиентов"
-            description="Более 1000 довольных клиентов выбрали наши квартиры для проживания в Мирном. Средняя оценка 4.9 из 5 звезд."
-            :reviews="reviews" :max-reviews="4" />
 
         <!-- CTA Section -->
         <CTASection variant="about" show-decorations />
@@ -25,13 +21,11 @@
 
 <script setup lang="ts">
 import { useApartmentStore } from '~/store/apartmentStore'
-import { companyData } from '~/config/company'
 
 // Components
 import PageHeaderWidget from '~/components/widgets/PageHeaderWidget.vue'
 import ContentSection from '~/components/sections/ContentSection.vue'
 import ValuesGridSection from '~/components/sections/ValuesGridSection.vue'
-import ReviewsSection from '~/components/sections/ReviewsSection.vue'
 import CTASection from '~/components/sections/CTASection.vue'
 
 // Set metadata for this page

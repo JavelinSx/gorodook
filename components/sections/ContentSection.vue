@@ -80,7 +80,7 @@ const sectionClass = computed(() => {
         transparent: ''
     }
 
-    return ['py-12', bgClasses[props.backgroundColor]].filter(Boolean).join(' ')
+    return ['py-12 relative', bgClasses[props.backgroundColor]].filter(Boolean).join(' ')
 })
 
 // Классы для сетки

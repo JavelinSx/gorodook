@@ -12,9 +12,6 @@
         <!-- Информация о городе Мирный -->
         <CityInfoSection />
 
-        <!-- Отзывы клиентов -->
-        <ReviewsSection :reviews="reviews" :max-reviews="4" />
-
         <!-- Контакты и бронирование (новый универсальный CTA) -->
         <CTASection variant="home" :contact-methods="contactMethods" show-decorations />
     </div>
@@ -29,7 +26,6 @@ import HeroSection from '~/components/sections/HeroSection.vue'
 import AdvantagesSection from '~/components/sections/AdvantagesSection.vue'
 import FeaturedApartmentsSection from '~/components/sections/FeaturedApartmentsSection.vue'
 import CityInfoSection from '~/components/sections/CityInfoSection.vue'
-import ReviewsSection from '~/components/sections/ReviewsSection.vue'
 import CTASection from '~/components/sections/CTASection.vue'
 
 // SEO метаданные с акцентом на Мирный Архангельской области

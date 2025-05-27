@@ -7,16 +7,11 @@
 
         <!-- История компании -->
         <ContentSection title="Мы создаем комфорт" :paragraphs="companyStory" :stats="companyStats"
-            image-url="/img/about-us.png" image-alt="О нашей компании" layout="text-image" />
+            image-url="/img/about-us.png" background-color="gray" image-alt="О нашей компании" layout="text-image" />
 
         <!-- Наши ценности -->
         <ValuesGridSection title="Наши ценности" description="Принципы, которыми мы руководствуемся в работе"
             :items="companyValues" :columns="3" background-color="gray" />
-
-        <!-- Отзывы клиентов -->
-        <ReviewsSection title="Отзывы наших клиентов"
-            description="Более 1000 довольных клиентов выбрали наши квартиры для проживания в Мирном. Средняя оценка 4.9 из 5 звезд."
-            :reviews="reviews" :max-reviews="4" />
 
         <!-- CTA Section -->
         <CTASection variant="about" show-decorations />
@@ -24,14 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import { useApartmentStore } from '~/store/apartmentStore'
-import { companyData } from '~/config/company'
-
 // Components
 import PageHeaderWidget from '~/components/widgets/PageHeaderWidget.vue'
 import ContentSection from '~/components/sections/ContentSection.vue'
 import ValuesGridSection from '~/components/sections/ValuesGridSection.vue'
-import ReviewsSection from '~/components/sections/ReviewsSection.vue'
 import CTASection from '~/components/sections/CTASection.vue'
 
 // Set metadata for this page
@@ -45,9 +36,6 @@ useHead({
     ],
 })
 
-// Get reviews from the store
-const apartmentStore = useApartmentStore()
-const { reviews } = storeToRefs(apartmentStore)
 
 // Данные компании
 const companyStory = [

@@ -34,7 +34,6 @@ const containerClass = computed(() => {
 })
 
 const svgClass = computed(() => {
-    // Теперь TypeScript знает точные ключи объекта
     const fillColorMap: Record<FillColor, string> = {
         'white': 'fill-white',
         'gray-50': 'fill-gray-50',
@@ -45,8 +44,10 @@ const svgClass = computed(() => {
 
     const fillClass = fillColorMap[props.fillColor]
     const sizeClasses = `w-full h-[${props.height}]`
-    const marginClass = props.position === 'bottom' ? 'mb-[-1px]' : 'mt-[-1px]'
+    const marginClass = props.position === 'bottom' ? '' : 'mt-[-1px]' // убрал mb-[-1px]
+    const displayFix = 'block'
 
-    return `${fillClass} ${sizeClasses} ${marginClass}`.trim()
+    return `${fillClass} ${sizeClasses} ${marginClass} ${displayFix}`.trim()
 })
+
 </script>

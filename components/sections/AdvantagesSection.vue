@@ -3,13 +3,11 @@
         <div class="container-custom">
             <!-- Заголовок секции -->
             <div class="text-center mb-12">
-                <AnimatedSection
-animation="fade-down" tag="h2"
+                <AnimatedSection animation="fade-down" tag="h2"
                     class="text-3xl md:text-4xl font-bold mb-4 text-cyan-800">
                     {{ title }}
                 </AnimatedSection>
-                <AnimatedSection
-animation="fade-down" :delay="0.1" tag="p"
+                <AnimatedSection animation="fade-down" :delay="0.1" tag="p"
                     class="text-center text-gray-600 max-w-3xl mx-auto">
                     {{ description }}
                 </AnimatedSection>
@@ -17,17 +15,9 @@ animation="fade-down" :delay="0.1" tag="p"
 
             <!-- Grid преимуществ -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <ValueCard
-v-for="(advantage, index) in advantages" 
-                    :key="index"
-                    :icon="advantage.icon"
-                    :title="advantage.title"
-                    :description="advantage.description"
-                    size="md"
-                    variant="advantage"
-                    animation="fade-up"
-                    :delay="0.1 + index * 0.1"
-                    :decoration-delay="index * 0.3" />
+                <ValueCard v-for="(advantage, index) in advantages" :key="index" :icon="advantage.icon"
+                    :title="advantage.title" :description="advantage.description" size="md" variant="advantage"
+                    animation="fade-up" :delay="0.1 + index * 0.1" :decoration-delay="index * 0.3" />
             </div>
         </div>
     </section>
@@ -71,7 +61,7 @@ withDefaults(defineProps<Props>(), {
         {
             icon: 'i-heroicons-clock',
             title: 'Быстрое заселение',
-            description: 'Заселение с 14:00, встреча гостей, помощь с размещением и оформлением документов.'
+            description: 'Заселение в удобное для вас время, встреча гостей, помощь с размещением и оформлением документов.'
         }
     ]
 })

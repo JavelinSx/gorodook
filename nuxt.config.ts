@@ -370,7 +370,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
-      siteName: 'Городок - Аренда квартир посуточно в Мирном Архангельской области',
+      siteName: 'Снять квартиру в Мирном | Квартиры командированным - официально',
       contactPhone: '+79214794791',
       contactEmail: '9214794791@mail.ru',
       yandexMetricaId: '96122697',

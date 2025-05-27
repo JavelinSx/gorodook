@@ -1,10 +1,5 @@
 <template>
     <section :class="sectionClass">
-        <!-- Фоновое изображение -->
-        <div v-if="backgroundImage" class="absolute inset-0 opacity-30 bg-cover bg-center" :style="backgroundStyle" />
-
-        <!-- Градиентный оверлей -->
-        <div :class="overlayClass" />
 
         <div class="container-custom relative z-10">
             <AnimatedSection animation="fade-in" :tag="titleTag" :class="titleClass">
@@ -47,7 +42,6 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    backgroundImage: '/img/hero-bg.webp',
     backgroundColor: 'bg-cyan-800',
     size: 'md',
     titleTag: 'h1',
@@ -58,13 +52,6 @@ const props = withDefaults(defineProps<Props>(), {
     textAlign: 'left'
 })
 
-// Стиль фонового изображения
-const backgroundStyle = computed(() => {
-    if (!props.backgroundImage) return {}
-    return {
-        backgroundImage: `url('${props.backgroundImage}')`
-    }
-})
 
 // Классы для секции
 const sectionClass = computed(() => {
@@ -81,22 +68,13 @@ const sectionClass = computed(() => {
 
     return [
         props.backgroundColor,
-        'text-white relative overflow-hidden',
+        'text-white relative overflow-hidden mb-[-1px]',
         sizeClasses[props.size],
         alignClasses[props.textAlign]
     ].join(' ')
 })
 
-// Классы для оверлея
-const overlayClass = computed(() => {
-    const overlayClasses = {
-        gradient: 'absolute inset-0 bg-gradient-to-r from-cyan-900/70 to-cyan-800/50',
-        solid: 'absolute inset-0 bg-cyan-800/60',
-        none: ''
-    }
 
-    return overlayClasses[props.overlayType]
-})
 
 // Классы для заголовка
 const titleClass = computed(() => {
