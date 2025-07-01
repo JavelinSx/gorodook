@@ -1,8 +1,8 @@
-// nuxt.config.ts - Исправленная версия для SPA
+// nuxt.config.ts - Исправленная версия для SPA с Яндекс.Метрикой
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
   ssr: false, // SPA mode
 
   // Экспериментальные функции для производительности
@@ -14,20 +14,20 @@ export default defineNuxtConfig({
 
   // Оптимизация модулей
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/scripts',
-    '@nuxt/ui',
-    '@pinia/nuxt',
-    'nuxt-swiper',
-    '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
+    "@nuxt/eslint",
+    "@nuxt/fonts",
+    "@nuxt/icon",
+    "@nuxt/scripts",
+    "@nuxt/ui",
+    "@pinia/nuxt",
+    "nuxt-swiper",
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap",
   ],
 
   // Оптимизация иконок
   icon: {
-    serverBundle: 'remote',
+    serverBundle: "remote",
     clientBundle: {
       scan: true,
       includeCustomCollections: false,
@@ -38,15 +38,15 @@ export default defineNuxtConfig({
   fonts: {
     defaults: {
       weights: [400, 700],
-      styles: ['normal'],
-      subsets: ['latin', 'cyrillic'],
+      styles: ["normal"],
+      subsets: ["latin", "cyrillic"],
     },
     families: [
       {
-        name: 'Roboto',
-        provider: 'google',
+        name: "Roboto",
+        provider: "google",
         weights: [400, 700],
-        display: 'swap',
+        display: "swap",
         preload: true,
       },
     ],
@@ -54,79 +54,81 @@ export default defineNuxtConfig({
 
   // Оптимизация Swiper
   swiper: {
-    modules: ['navigation', 'pagination', 'autoplay', 'zoom'],
+    modules: ["navigation", "pagination", "autoplay", "zoom"],
     bundled: true,
   },
 
   // Настройка цветов UI
   ui: {
-    prefix: 'Nuxt',
+    prefix: "Nuxt",
     global: true,
-    icons: ['heroicons', 'mdi'],
+    icons: ["heroicons", "mdi"],
     colors: {
       primary: {
-        50: '#f0f5ff',
-        100: '#e0ebff',
-        200: '#c7d7fe',
-        300: '#a4bdfc',
-        400: '#799cf7',
-        500: '#5a7ff0',
-        600: '#3e63e4',
-        700: '#3352cf',
-        800: '#2c44a8',
-        900: '#293d85',
-        950: '#1a2352',
+        50: "#f0f5ff",
+        100: "#e0ebff",
+        200: "#c7d7fe",
+        300: "#a4bdfc",
+        400: "#799cf7",
+        500: "#5a7ff0",
+        600: "#3e63e4",
+        700: "#3352cf",
+        800: "#2c44a8",
+        900: "#293d85",
+        950: "#1a2352",
       },
       accent: {
-        50: '#f0f9ff',
-        100: '#e0f2fe',
-        200: '#bae6fd',
-        300: '#7dd3fc',
-        400: '#38bdf8',
-        500: '#0ea5e9',
-        600: '#0284c7',
-        700: '#0369a1',
-        800: '#075985',
-        900: '#0c4a6e',
-        950: '#082f49',
+        50: "#f0f9ff",
+        100: "#e0f2fe",
+        200: "#bae6fd",
+        300: "#7dd3fc",
+        400: "#38bdf8",
+        500: "#0ea5e9",
+        600: "#0284c7",
+        700: "#0369a1",
+        800: "#075985",
+        900: "#0c4a6e",
+        950: "#082f49",
       },
     },
   },
 
   // Pinia оптимизация
   pinia: {
-    autoImports: ['defineStore', 'storeToRefs'],
+    autoImports: ["defineStore", "storeToRefs"],
   },
 
   // Оптимизация сайта
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
-    name: 'Городок - Аренда квартир посуточно в Мирном Архангельской области',
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://gorodook.ru",
+    name: "Городок - Аренда квартир посуточно в Мирном Архангельской области",
     description:
-      'Снять квартиру посуточно в городе Мирный Архангельской области. Комфортные 1-2 комнатные квартиры с современным ремонтом для командировочных и туристов.',
-    defaultLocale: 'ru',
+      "Снять квартиру посуточно в городе Мирный Архангельской области. Комфортные 1-2 комнатные квартиры с современным ремонтом для командировочных и туристов.",
+    defaultLocale: "ru",
   },
 
   // Robots.txt
   robots: {
-    UserAgent: '*',
-    Allow: '/',
-    Disallow: ['/admin/', '/api/', '/_nuxt/', '/_ipx/'],
-    Sitemap: (process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru') + '/sitemap.xml',
+    UserAgent: "*",
+    Allow: "/",
+    Disallow: ["/admin/", "/api/", "/_nuxt/", "/_ipx/"],
+    Sitemap:
+      (process.env.NUXT_PUBLIC_SITE_URL || "https://gorodook.ru") +
+      "/sitemap.xml",
   },
 
   // Sitemap оптимизация
   sitemap: {
     discoverImages: false,
-    exclude: ['/admin/**', '/api/**', '/_nuxt/**', '/_ipx/**'],
+    exclude: ["/admin/**", "/api/**", "/_nuxt/**", "/_ipx/**"],
     defaults: {
-      changefreq: 'weekly' as const,
+      changefreq: "weekly" as const,
       priority: 0.5,
       lastmod: new Date().toISOString(),
     },
     autoLastmod: false,
     credits: false,
-    sitemapName: 'sitemap.xml',
+    sitemapName: "sitemap.xml",
   },
 
   // Nitro оптимизация для SPA
@@ -138,12 +140,12 @@ export default defineNuxtConfig({
     },
     prerender: {
       routes: [
-        '/',
-        '/apartments',
-        '/about',
-        '/contacts',
-        '/privacy',
-        '/terms',
+        "/",
+        "/apartments",
+        "/about",
+        "/contacts",
+        "/privacy",
+        "/terms",
         // Все страницы квартир (0-15)
         ...Array.from({ length: 16 }, (_, i) => `/apartments/${i}`),
       ],
@@ -151,88 +153,88 @@ export default defineNuxtConfig({
     },
     routeRules: {
       // Главная страница - агрессивное кэширование
-      '/': {
+      "/": {
         prerender: true,
         headers: {
-          'cache-control': 'public, max-age=3600, s-maxage=31536000', // 1 час браузер, 1 год CDN
-          'x-robots-tag': 'index, follow',
+          "cache-control": "public, max-age=3600, s-maxage=31536000", // 1 час браузер, 1 год CDN
+          "x-robots-tag": "index, follow",
         },
       },
 
       // Статические изображения - долгосрочное кэширование
-      '/img/**': {
+      "/img/**": {
         headers: {
-          'cache-control': 'public, max-age=31536000, immutable', // 1 год
-          vary: 'Accept-Encoding',
+          "cache-control": "public, max-age=31536000, immutable", // 1 год
+          vary: "Accept-Encoding",
         },
       },
 
       // JavaScript и CSS файлы - иммутабельное кэширование
-      '/_nuxt/**': {
+      "/_nuxt/**": {
         headers: {
-          'cache-control': 'public, max-age=31536000, immutable',
+          "cache-control": "public, max-age=31536000, immutable",
         },
       },
 
       // Страницы квартир - кэш с revalidation
-      '/apartments': {
+      "/apartments": {
         headers: {
-          'cache-control': 'public, max-age=1800, s-maxage=3600', // 30 мин браузер, 1 час CDN
+          "cache-control": "public, max-age=1800, s-maxage=3600", // 30 мин браузер, 1 час CDN
         },
       },
 
-      '/apartments/**': {
+      "/apartments/**": {
         headers: {
-          'cache-control': 'public, max-age=1800, s-maxage=3600',
+          "cache-control": "public, max-age=1800, s-maxage=3600",
         },
       },
 
       // Страница "О нас" - умеренное кэширование
-      '/about': {
+      "/about": {
         headers: {
-          'cache-control': 'public, max-age=7200, s-maxage=86400', // 2 часа браузер, 1 день CDN
+          "cache-control": "public, max-age=7200, s-maxage=86400", // 2 часа браузер, 1 день CDN
         },
       },
 
       // Контакты - кэш с быстрым обновлением
-      '/contacts': {
+      "/contacts": {
         headers: {
-          'cache-control': 'public, max-age=3600, s-maxage=7200', // 1 час браузер, 2 часа CDN
+          "cache-control": "public, max-age=3600, s-maxage=7200", // 1 час браузер, 2 часа CDN
         },
       },
 
       // Шрифты - долгосрочное кэширование
-      '/fonts/**': {
+      "/fonts/**": {
         headers: {
-          'cache-control': 'public, max-age=31536000, immutable',
-          'cross-origin-resource-policy': 'cross-origin',
+          "cache-control": "public, max-age=31536000, immutable",
+          "cross-origin-resource-policy": "cross-origin",
         },
       },
 
       // Фавиконы и иконки
-      '/favicon.ico': {
+      "/favicon.ico": {
         headers: {
-          'cache-control': 'public, max-age=86400', // 1 день
+          "cache-control": "public, max-age=86400", // 1 день
         },
       },
 
       // Манифест PWA
-      '/manifest.json': {
+      "/manifest.json": {
         headers: {
-          'cache-control': 'public, max-age=86400',
+          "cache-control": "public, max-age=86400",
         },
       },
 
       // Sitemap и robots
-      '/sitemap.xml': {
+      "/sitemap.xml": {
         headers: {
-          'cache-control': 'public, max-age=86400',
+          "cache-control": "public, max-age=86400",
         },
       },
 
-      '/robots.txt': {
+      "/robots.txt": {
         headers: {
-          'cache-control': 'public, max-age=86400',
+          "cache-control": "public, max-age=86400",
         },
       },
     },
@@ -241,19 +243,19 @@ export default defineNuxtConfig({
   // Vite оптимизация с исправлением
   vite: {
     optimizeDeps: {
-      exclude: ['@nuxt/kit'],
-      include: ['swiper', 'web-vitals'],
+      exclude: ["@nuxt/kit"],
+      include: ["swiper", "web-vitals"],
     },
     build: {
-      target: 'esnext',
+      target: "esnext",
       cssCodeSplit: true,
       rollupOptions: {
-        external: ['@nuxt/kit'],
+        external: ["@nuxt/kit"],
         output: {
           manualChunks: {
-            vendor: ['vue', '@vue/runtime-core'],
-            swiper: ['swiper'],
-            utils: ['lodash-es'],
+            vendor: ["vue", "@vue/runtime-core"],
+            swiper: ["swiper"],
+            utils: ["lodash-es"],
           },
         },
       },
@@ -268,99 +270,154 @@ export default defineNuxtConfig({
   },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       htmlAttrs: {
-        lang: 'ru',
-        dir: 'ltr',
+        lang: "ru",
+        dir: "ltr",
       },
       meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-        { name: 'format-detection', content: 'telephone=no' },
+        { charset: "utf-8" },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1, shrink-to-fit=no",
+        },
+        { name: "format-detection", content: "telephone=no" },
 
         // Основная SEO информация
-        { name: 'author', content: 'Городок - аренда квартир в Мирном' },
-        { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+        { name: "author", content: "Городок - аренда квартир в Мирном" },
         {
-          name: 'description',
+          name: "robots",
           content:
-            'Снять квартиру в Мирном Архангельской области посуточно без посредников. Квартиры посуточно недорого в центре города для командировочных и туристов. Жилье на сутки от собственника.',
+            "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        },
+        {
+          name: "description",
+          content:
+            "Снять квартиру в Мирном Архангельской области посуточно без посредников. Квартиры посуточно недорого в центре города для командировочных и туристов. Жилье на сутки от собственника.",
         },
 
         {
-          name: 'keywords',
+          name: "keywords",
           content:
-            'снять квартиру в мирном, мирный квартиры посуточно, снять квартиру в мирном архангельской области посуточно, квартиры посуточно мирный архангельская область, снять квартиру посуточно без посредников, квартира посуточно без посредников недорого, однокомнатная квартира посуточно, квартира на сутки мирный',
+            "снять квартиру в мирном, мирный квартиры посуточно, снять квартиру в мирном архангельской области посуточно, квартиры посуточно мирный архангельская область, снять квартиру посуточно без посредников, квартира посуточно без посредников недорого, однокомнатная квартира посуточно, квартира на сутки мирный",
         },
         // Локальное SEO для Мирного
-        { name: 'geo.region', content: 'RU-ARK' },
-        { name: 'geo.placename', content: 'Мирный, Архангельская область, Россия' },
+        { name: "geo.region", content: "RU-ARK" },
+        {
+          name: "geo.placename",
+          content: "Мирный, Архангельская область, Россия",
+        },
 
         // Производительность
-        { name: 'theme-color', content: '#0ea5e9' },
-        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: "theme-color", content: "#0ea5e9" },
+        { name: "mobile-web-app-capable", content: "yes" },
 
         // Верификация поисковых систем
-        { name: 'yandex-verification', content: '54a58e117daa0e88' },
-        { name: 'google-site-verification', content: '8qZ6fFeBhLWiIgvWMjH2QRxCLkDYQsyH1Q8aU4b-6Zo' },
+        { name: "yandex-verification", content: "54a58e117daa0e88" },
+        {
+          name: "google-site-verification",
+          content: "8qZ6fFeBhLWiIgvWMjH2QRxCLkDYQsyH1Q8aU4b-6Zo",
+        },
       ],
       link: [
         // Основной favicon
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 
         // PNG версии для лучшего качества
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: "/favicon-16x16.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: "/favicon-32x32.png",
+        },
 
         // Apple Touch Icon для iOS
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/apple-touch-icon.png",
+        },
 
         // Веб-манифест для PWA
-        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: "manifest", href: "/site.webmanifest" },
 
         // Preconnect для критических ресурсов
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'dns-prefetch', href: 'https://mc.yandex.ru' },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "",
+        },
+        { rel: "dns-prefetch", href: "https://mc.yandex.ru" },
       ],
       script: [
         // Структурированные данные
         {
-          type: 'application/ld+json',
+          type: "application/ld+json",
           children: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'RealEstateAgent',
-            name: 'Городок',
-            description: 'Аренда квартир посуточно в городе Мирный Архангельской области',
-            url: 'https://gorodook.ru',
-            telephone: '+7-921-479-47-91',
-            email: '9214794791@mail.ru',
+            "@context": "https://schema.org",
+            "@type": "RealEstateAgent",
+            name: "Городок",
+            description:
+              "Аренда квартир посуточно в городе Мирный Архангельской области",
+            url: "https://gorodook.ru",
+            telephone: "+7-921-479-47-91",
+            email: "9214794791@mail.ru",
             address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'ул. Ленина, д.65, офис 20',
-              addressLocality: 'Мирный',
-              addressRegion: 'Архангельская область',
-              postalCode: '164170',
-              addressCountry: 'RU',
+              "@type": "PostalAddress",
+              streetAddress: "ул. Ленина, д.65, офис 20",
+              addressLocality: "Мирный",
+              addressRegion: "Архангельская область",
+              postalCode: "164170",
+              addressCountry: "RU",
             },
             geo: {
-              '@type': 'GeoCoordinates',
+              "@type": "GeoCoordinates",
               latitude: 62.7676,
               longitude: 40.3348,
             },
             aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: '4.9',
-              reviewCount: '150',
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "150",
             },
           }),
+        },
+        // Яндекс.Метрика
+        {
+          type: "text/javascript",
+          children: `
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            ym(96122697, "init", {
+                 clickmap:true,
+                 trackLinks:true,
+                 accurateTrackBounce:true
+            });
+          `,
+        },
+      ],
+      noscript: [
+        // Fallback для Яндекс.Метрики при отключенном JavaScript
+        {
+          children:
+            '<div><img src="https://mc.yandex.ru/watch/96122697" style="position:absolute; left:-9999px;" alt="" /></div>',
         },
       ],
     },
   },
 
-  components: ['~/components'],
+  components: ["~/components"],
 
   typescript: {
     shim: false,
@@ -369,16 +426,17 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gorodook.ru',
-      siteName: 'Снять квартиру в Мирном | Квартиры командированным - официально',
-      contactPhone: '+79214794791',
-      contactEmail: '9214794791@mail.ru',
-      yandexMetricaId: '96122697',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://gorodook.ru",
+      siteName:
+        "Снять квартиру в Мирном | Квартиры командированным - официально",
+      contactPhone: "+79214794791",
+      contactEmail: "9214794791@mail.ru",
+      yandexMetricaId: "96122697",
     },
   },
 
   // Исправляем проблему с импортом @nuxt/kit
   build: {
-    transpile: ['@nuxt/ui'],
+    transpile: ["@nuxt/ui"],
   },
 });
